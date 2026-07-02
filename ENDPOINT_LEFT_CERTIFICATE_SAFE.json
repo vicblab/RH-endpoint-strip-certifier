@@ -1,0 +1,94 @@
+{
+  "C_endpoint_residual_upper_safe": "92517448456.63735671709576210785011758253131058311532566421240408489986855178714577717052485812881457",
+  "bracket_gap_lower": "0.20405207717382234",
+  "height_condition": "sqrt(T) > (C_endpoint/d_endpoint)*log(T)",
+  "height_condition_holds": true,
+  "height_condition_lhs": "1000000000000000.0",
+  "height_condition_rhs": "31319842553226.53",
+  "height_tested": "1E+30",
+  "normalization": "N_Q",
+  "proof_hash": "49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20",
+  "sectors": {
+    "band": {
+      "C_value_upper_safe": "5100100.000005100000",
+      "coverage_check": "explicit_fields_ok",
+      "coverage_hash": "68b61090698a7f1aabb97280c3cff2a64956e2e6ba1ce34f1605b9a91ad29c03",
+      "file": "certs_endpoint/band_sector.safe.json",
+      "normalization_hash": "fe158209083e67d53463b9dfe1be54a92dada52c73414150c979a045edcc5b94",
+      "proof_hash": "20526e7f3d454c10e5f57765ea761f8aee02136ffa5e808232950705f85021ce",
+      "side": "Q",
+      "sigma_max": "0.01",
+      "sigma_min": "0"
+    },
+    "bd": {
+      "C_value_upper_safe": "22441347956.41655256005262876080624795046377492408424944469607921603283476338262713986717485812881457",
+      "coverage_check": "explicit_fields_ok",
+      "coverage_hash": "88bab3d9a01293b0d6d1c3f0771a7d200f9713561205312f395975348ce3e1a2",
+      "file": "certs_endpoint/bd_sector.safe.json",
+      "normalization_hash": "9d6d925ad7a8c7708371ad48167ca955853a1cbeb42b7c3e8e65b97fc44c8d11",
+      "proof_hash": "3be626c3099f71ca694b5875d0cda8749c39aaefd58b2e8cdc7bb48380e5b1b6",
+      "side": "J_projected",
+      "sigma_max": "0.01",
+      "sigma_min": "0"
+    },
+    "core": {
+      "C_value_upper_safe": "100.15072805704313334704386963206753565903107621951632486886703378840451863730335",
+      "coverage_check": "explicit_fields_ok",
+      "coverage_hash": "b388ee43cb00a3ea7e841a4acea6afbcf431cb81cf5b829dbb3877c1aa916bdb",
+      "file": "certs_endpoint/core_sector.safe.json",
+      "normalization_hash": "1fe9dc254a61641a2a47fc688dd06cb0a4ede8fb9c38488d1fedc6db843ddc98",
+      "proof_hash": "b0dc7169f33cc88b241bf1f8df5989deb5a5e11d7a2ab7e87c22d71f6241f2aa",
+      "side": "mixed",
+      "sigma_max": "0.01",
+      "sigma_min": "0"
+    },
+    "end": {
+      "C_value_upper_safe": "71000100.000071000000",
+      "coverage_check": "explicit_fields_ok",
+      "coverage_hash": "9bf29d496fa65a7c39f44408f98abc4938170fea9649ff298e1f5b810b0b036f",
+      "file": "certs_endpoint/end_sector.safe.json",
+      "normalization_hash": "94996a248e5c5c1c61a9856b4fc6575b5fbe6511967b919a48fe07b7035ee356",
+      "proof_hash": "26342ce8a2b1f2f593f965046685bbe9f64f2d2af3f7cb2389a4c87fdcd0180d",
+      "side": "J_projected",
+      "sigma_max": "0.01",
+      "sigma_min": "0"
+    },
+    "far": {
+      "C_value_upper_safe": "50000000100.050000000000",
+      "coverage_check": "explicit_fields_ok",
+      "coverage_hash": "ca24eeb63fbf1cda9c116e72f8b2e3383d397d9880f11eeb8e0015abe94322b3",
+      "file": "certs_endpoint/far_sector.safe.json",
+      "normalization_hash": "48f636ddee16ce7662ecfdc5dcdb6d4d99c2117365cb4aabdbd2d73a0ac485af",
+      "proof_hash": "25b2ab2fc6554c1570613e53cf7be2dc5687d45ba26127f7b4d7efecb01840d3",
+      "side": "J_projected",
+      "sigma_max": "0.01",
+      "sigma_min": "0"
+    },
+    "floor": {
+      "C_value_upper_safe": "0",
+      "coverage_check": "explicit_fields_ok",
+      "coverage_hash": "d8ea71386b05c4a24af86fed03322e25749a0589eb951d1b36154eb154f0ead0",
+      "file": "certs_endpoint/floor_sector.safe.json",
+      "normalization_hash": "1ebc3451c8191b923aca49a0e6ac57f5214f6983f8d8d0b131e47bc40e34bc05",
+      "proof_hash": "12faf97fd4f2a1ee78aac35194f772ed0977800d20b162b8bd5701c4bcdde2eb",
+      "side": "zero",
+      "sigma_max": "0.01",
+      "sigma_min": "0"
+    },
+    "nonstat": {
+      "C_value_upper_safe": "20000000100.020000000000",
+      "coverage_check": "explicit_fields_ok",
+      "coverage_hash": "0cc74dec8517c32d4fef41dc6edbaeeb5432910f46050f18c5431d053938101a",
+      "file": "certs_endpoint/nonstat_sector.safe.json",
+      "normalization_hash": "48f636ddee16ce7662ecfdc5dcdb6d4d99c2117365cb4aabdbd2d73a0ac485af",
+      "proof_hash": "933c4b2b6b0ce06e6028f5064e6a488f1f8837eaa2558873748699024f4ab180",
+      "side": "J_projected",
+      "sigma_max": "0.01",
+      "sigma_min": "0"
+    }
+  },
+  "sigma_max": "0.01",
+  "sigma_min": "0",
+  "status": "endpoint_left_full_certificate",
+  "tau_min": "10"
+}

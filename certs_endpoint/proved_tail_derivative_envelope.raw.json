@@ -1,0 +1,35 @@
+{
+  "status": "proved",
+  "M1_hprime": "144007.48638719585",
+  "M2_hsecond": "420553.35393469455",
+  "domain": {
+    "sigma": "[0.0,0.01]",
+    "mu": "[0,0.31622776601683794]",
+    "y": "[0,256.0]",
+    "Y": 128.0
+  },
+  "boxes": {
+    "ns": 4,
+    "nmu_direct": 32,
+    "ny": 256,
+    "mu0_taylor": 0.00048828125
+  },
+  "worst_M1_box": [
+    0,
+    0,
+    197,
+    "-",
+    "taylor",
+    144007.48638719585
+  ],
+  "worst_M2_box": [
+    0,
+    0,
+    209,
+    "-",
+    "taylor",
+    420553.35393469455
+  ],
+  "method": "Arb interval AD2 derivative envelope for compact tail amplitude; Taylor log branch near mu=0 with interval remainder",
+  "proof_hash": "fc4d34515afd2b0ac5d6ddd37378e583b38d0e9b63708327dabcdcd1bd9bb081"
+}

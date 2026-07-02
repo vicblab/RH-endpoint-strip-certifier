@@ -1,0 +1,16 @@
+{
+  "status": "proved",
+  "C_chic_tail": "378967.21714296323762304567587667590495189351722596491347131317857292941639108374",
+  "A2_rminus2_bound": "2737089.0010116986868131370326430121568442959087197635661834832663021045808949577",
+  "inputs": {
+    "Y": "128",
+    "R": "32",
+    "T0": "10",
+    "Kstar": "1.262751",
+    "M1_hprime": "144007.48638719585",
+    "M2_hsecond": "420553.35393469455",
+    "envelope_hash": "fc4d34515afd2b0ac5d6ddd37378e583b38d0e9b63708327dabcdcd1bd9bb081"
+  },
+  "method": "large-r compact-complement tail by two integrations by parts in y using proved derivative envelope",
+  "proof_hash": "a5f1a25f6459cb7a5c30aad1af1f9601d5a8e3b180e3c7d16144a63ee930b1d5"
+}

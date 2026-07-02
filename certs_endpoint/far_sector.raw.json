@@ -1,0 +1,25 @@
+{
+  "C_sigma_derivative_upper": "100000000000",
+  "C_value_upper": "50000000000",
+  "components": {
+    "K_far_overlap_guard": {
+      "C_sigma_derivative_upper": "20000000000",
+      "C_value_upper": "10000000000"
+    },
+    "K_minus_stationary_remainder": {
+      "C_sigma_derivative_upper": "40000000000",
+      "C_value_upper": "20000000000"
+    },
+    "K_plus_stationary_remainder": {
+      "C_sigma_derivative_upper": "40000000000",
+      "C_value_upper": "20000000000"
+    }
+  },
+  "coverage_hash": "ca24eeb63fbf1cda9c116e72f8b2e3383d397d9880f11eeb8e0015abe94322b3",
+  "method": "conservative far stationary post-packet envelope with sigma derivative",
+  "normalization_hash": "48f636ddee16ce7662ecfdc5dcdb6d4d99c2117365cb4aabdbd2d73a0ac485af",
+  "proof_hash": "521047ea5371e83d724d157175266644f8b3c8c925bfc299b9507157cca51f6c",
+  "sector": "far",
+  "side": "J_projected",
+  "status": "proved"
+}

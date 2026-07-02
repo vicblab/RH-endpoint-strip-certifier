@@ -1,0 +1,12 @@
+{
+  "C_sigma_derivative_upper": "0",
+  "C_value_upper": "0",
+  "coverage_hash": "d8ea71386b05c4a24af86fed03322e25749a0589eb951d1b36154eb154f0ead0",
+  "mathematical_statement": "R_floor(s)=0 identically; d/dsigma R_floor(s)=0.",
+  "method": "half_open_floor_sector_identically_zero",
+  "normalization_hash": "1ebc3451c8191b923aca49a0e6ac57f5214f6983f8d8d0b131e47bc40e34bc05",
+  "proof_hash": "3bb35d4c4948ac513c5224527509056c95d5c06092ec12408439482f8a9d9a81",
+  "sector": "floor",
+  "side": "zero",
+  "status": "proved"
+}

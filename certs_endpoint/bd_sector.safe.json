@@ -1,0 +1,144 @@
+{
+  "C_sigma_derivative_upper": "0",
+  "C_sigma_derivative_upper_safe": "0",
+  "C_value_upper": "22441347856.394111212196234649594051715814180872368435263823710780769011052601858128814573",
+  "C_value_upper_safe": "22441347956.41655256005262876080624795046377492408424944469607921603283476338262713986717485812881457",
+  "components": {
+    "A_grouped_compact_upper": "71158001.83400355",
+    "A_tail_compact_upper": "22369784191.87126",
+    "compact_complement_hooks": {
+      "chic_nonstationary": {
+        "file": "certs_endpoint/cert_chic_nonstationary.raw.json",
+        "proof_hash": "b2f931eff9c982af7b78b87da744d0bd8f054e83d0cf8541a92dce0a68dba3ca",
+        "value": "26601.258034161949158278641214596284860630401098005702127355221286417618216469536"
+      },
+      "chic_stationary": {
+        "file": "certs_endpoint/cert_chic_stationary.raw.json",
+        "proof_hash": "93796d0ba8692411a3d01c1f5dc9b23c2f1a4254ebc52e82df236738c41bfca3",
+        "value": "94.213670537009453325276960443624368348450111293208112112369151705567250575538573"
+      },
+      "chic_tail": {
+        "file": "certs_endpoint/cert_chic_tail.raw.json",
+        "proof_hash": "a5f1a25f6459cb7a5c30aad1af1f9601d5a8e3b180e3c7d16144a63ee930b1d5",
+        "value": "378967.21714296323762304567587667590495189351722596491347131317857292941639108374"
+      }
+    },
+    "safe_rule": "safe = raw*(1+1E-12)+100"
+  },
+  "coverage_hash": "88bab3d9a01293b0d6d1c3f0771a7d200f9713561205312f395975348ce3e1a2",
+  "coverage_stamp_hash": "955a1f90934ce783761057c34e5582ab4f2eb376c09e9370c2fc8ba8e155bb99",
+  "coverage_statement": "certified on sigma in [0,0.01], tau >= 10; stamped from the endpoint run command",
+  "dependencies": {
+    "compact_grp_100_400.raw.json": {
+      "file": "certs_endpoint/compact_grp_100_400.raw.json",
+      "hash": "9f3573850e4bf1704371c3273ab6d4b932fcd9be31316de4d767ca79020412d8",
+      "subsector": "bd_grouped_central_compact_finite_tau",
+      "used_as": "grouped_compact",
+      "value": "271972.85986328125"
+    },
+    "compact_grp_10_25.raw.json": {
+      "file": "certs_endpoint/compact_grp_10_25.raw.json",
+      "hash": "e9555765150eac9cc7001984530918ed7b021ebadbcf93844eaf6fa1c4c09dd3",
+      "subsector": "bd_grouped_central_compact_finite_tau",
+      "used_as": "grouped_compact",
+      "value": "1751.6300582885742"
+    },
+    "compact_grp_1600_6400.raw.json": {
+      "file": "certs_endpoint/compact_grp_1600_6400.raw.json",
+      "hash": "be3f3ffd13b3d09b8dacbc5a473814f19caf3ed5b29c56058a4a94304cfd5518",
+      "subsector": "bd_grouped_central_compact_finite_tau",
+      "used_as": "grouped_compact",
+      "value": "17377944.53125"
+    },
+    "compact_grp_25_100.raw.json": {
+      "file": "certs_endpoint/compact_grp_25_100.raw.json",
+      "hash": "ebfb994f3aa2d2ef6b04574b602974265ae99578133f9143371b61d23a9f0a56",
+      "subsector": "bd_grouped_central_compact_finite_tau",
+      "used_as": "grouped_compact",
+      "value": "20840.082733154297"
+    },
+    "compact_grp_400_1600.raw.json": {
+      "file": "certs_endpoint/compact_grp_400_1600.raw.json",
+      "hash": "8d2bdc0d5a0d61764e0b662cb9678689626e4b4372c3e963571d41d27b050900",
+      "subsector": "bd_grouped_central_compact_finite_tau",
+      "used_as": "grouped_compact",
+      "value": "3870546.431640625"
+    },
+    "compact_grp_6400_65536.raw.json": {
+      "file": "certs_endpoint/compact_grp_6400_65536.raw.json",
+      "hash": "7535ae658e472f7ecfcb1abe87e300c4c08ea3fc8a1dd6c7866532c27359fd87",
+      "subsector": "bd_grouped_central_compact_finite_tau",
+      "used_as": "grouped_compact",
+      "value": "5457915.515625"
+    },
+    "compact_grp_taylor_w0.raw.json": {
+      "file": "certs_endpoint/compact_grp_taylor_w0.raw.json",
+      "hash": "9a16406268eafbde9d281d67c90c1908b69c5b6506927ea505e98b3faae6f857",
+      "subsector": "bd_grouped_central_compact_taylor_w0",
+      "used_as": "grouped_compact_taylor",
+      "value": "71158001.83400355"
+    },
+    "compact_tail_taylor_w0.raw.json": {
+      "file": "certs_endpoint/compact_tail_taylor_w0.raw.json",
+      "hash": "bdcdece73a00135c56a3c4ec146e07d5cde9f392020395fe7e18e6a99dabb25b",
+      "subsector": "bd_high_tail_compact_taylor_w0",
+      "used_as": "tail_compact_taylor_converted",
+      "value": "22369784191.87126"
+    },
+    "compact_tail_w_0p00390625_0p00625.raw.json": {
+      "conversion": "0.098843879459434312935638821476530184904991788627323",
+      "file": "certs_endpoint/compact_tail_w_0p00390625_0p00625.raw.json",
+      "hash": "33dc3911dbe72c6e0b731415b31abe129395b29590182d4cfeb640ad3ef26e03",
+      "raw_A_tail_sc": "1089733038.2081473",
+      "subsector": "bd_high_tail_compact_finite_w_r",
+      "used_as": "tail_compact_finite_converted",
+      "value": "107713441.0716092382278031031632671785607402145423813399222219886779"
+    },
+    "compact_tail_w_0p00625_0p0125.raw.json": {
+      "conversion": "0.098843879459434312935638821476530184904991788627323",
+      "file": "certs_endpoint/compact_tail_w_0p00625_0p0125.raw.json",
+      "hash": "b64839d6f8e44b8c57a8412e98392636c4afe7d5fd76e86e2c0c96180921ef32",
+      "raw_A_tail_sc": "640624801.0235006",
+      "subsector": "bd_high_tail_compact_finite_w_r",
+      "used_as": "tail_compact_finite_converted",
+      "value": "63321840.6110909847705897278308519495632449137593911100655382668938"
+    },
+    "compact_tail_w_0p0125_0p025.raw.json": {
+      "conversion": "0.098843879459434312935638821476530184904991788627323",
+      "file": "certs_endpoint/compact_tail_w_0p0125_0p025.raw.json",
+      "hash": "c6c2bc7c5dc7d39111f21f55f57ba1d6531322b2cbd1154b9be8b51e861d9cb8",
+      "raw_A_tail_sc": "286850233.43947935",
+      "subsector": "bd_high_tail_compact_finite_w_r",
+      "used_as": "tail_compact_finite_converted",
+      "value": "28353389.89700249061009345316103922866880150334825995573753230428005"
+    },
+    "compact_tail_w_0p025_0p05.raw.json": {
+      "conversion": "0.098843879459434312935638821476530184904991788627323",
+      "file": "certs_endpoint/compact_tail_w_0p025_0p05.raw.json",
+      "hash": "05f5117b6525bfef49d3c98cfbf09ccbcbc838f992fade3f5eb8fc927906bcd1",
+      "raw_A_tail_sc": "127779335.84993167",
+      "subsector": "bd_high_tail_compact_finite_w_r",
+      "used_as": "tail_compact_finite_converted",
+      "value": "12630205.27015721952133352925714485118896605479296835801451264501941"
+    },
+    "compact_tail_w_0p05_0p316.raw.json": {
+      "conversion": "0.098843879459434312935638821476530184904991788627323",
+      "file": "certs_endpoint/compact_tail_w_0p05_0p316.raw.json",
+      "hash": "14186d7d7220b96e42f84e7d6c633899a4dda2e29312ce570c0b57550befe23a",
+      "raw_A_tail_sc": "58040299.34648968",
+      "subsector": "bd_high_tail_compact_finite_w_r",
+      "used_as": "tail_compact_finite_converted",
+      "value": "5736928.35239391005750201302459478926339108128254606173368578552664"
+    }
+  },
+  "method": "endpoint compact-boundary fragment max merge plus compact-complement hooks",
+  "normalization_hash": "9d6d925ad7a8c7708371ad48167ca955853a1cbeb42b7c3e8e65b97fc44c8d11",
+  "proof_hash": "3be626c3099f71ca694b5875d0cda8749c39aaefd58b2e8cdc7bb48380e5b1b6",
+  "sector": "bd",
+  "side": "J_projected",
+  "sigma_max": "0.01",
+  "sigma_min": "0",
+  "stamped_json_hash": "d2d64c9ca1695df9f31fc6900c23447aff1d2d8636cfe79302137333619fa7d3",
+  "status": "proved",
+  "tau_min": "10"
+}

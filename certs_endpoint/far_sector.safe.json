@@ -1,0 +1,35 @@
+{
+  "C_sigma_derivative_upper": "100000000000",
+  "C_sigma_derivative_upper_safe": "100000000100.100000000000",
+  "C_value_upper": "50000000000",
+  "C_value_upper_safe": "50000000100.050000000000",
+  "components": {
+    "K_far_overlap_guard": {
+      "C_sigma_derivative_upper": "20000000000",
+      "C_value_upper": "10000000000"
+    },
+    "K_minus_stationary_remainder": {
+      "C_sigma_derivative_upper": "40000000000",
+      "C_value_upper": "20000000000"
+    },
+    "K_plus_stationary_remainder": {
+      "C_sigma_derivative_upper": "40000000000",
+      "C_value_upper": "20000000000"
+    }
+  },
+  "coverage_hash": "ca24eeb63fbf1cda9c116e72f8b2e3383d397d9880f11eeb8e0015abe94322b3",
+  "coverage_stamp_hash": "281c4b67567913cd9ab92cd517e2643c32f98ca70ddc035d6a2df9f21c6e78b0",
+  "coverage_statement": "certified on sigma in [0,0.01], tau >= 10; stamped from the endpoint run command",
+  "method": "conservative far stationary post-packet envelope with sigma derivative",
+  "normalization_hash": "48f636ddee16ce7662ecfdc5dcdb6d4d99c2117365cb4aabdbd2d73a0ac485af",
+  "proof_hash": "25b2ab2fc6554c1570613e53cf7be2dc5687d45ba26127f7b4d7efecb01840d3",
+  "safe_normalization_rule": "safe=0 if raw=0 else raw*(1+1e-12)+100",
+  "sector": "far",
+  "side": "J_projected",
+  "sigma_max": "0.01",
+  "sigma_min": "0",
+  "source_raw_file": "certs_endpoint/far_sector.raw.json",
+  "stamped_json_hash": "d3f231e39c0fcf2857932ab40993193787fab731ed46fea49b5937e95897edf5",
+  "status": "proved",
+  "tau_min": "10"
+}

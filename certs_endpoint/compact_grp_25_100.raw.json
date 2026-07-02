@@ -1,0 +1,26 @@
+{
+  "status": "compact_boundary_fragment",
+  "subsector": "bd_grouped_central_compact_finite_tau",
+  "tau_range": [
+    25.0,
+    100.0
+  ],
+  "Y": 128.0,
+  "A_bd_grp_compact_fragment_upper": 20840.082733154297,
+  "worst_box": [
+    0,
+    7,
+    1,
+    50,
+    20840.082733154297
+  ],
+  "missing_for_full_certificate": [
+    "tau beyond tau_max or w->0 compact Taylor"
+  ],
+  "cutoff": {
+    "type": "cubic",
+    "chi": "1 on [0,Y], 1-3t^2+2t^3 on [Y,2Y], 0 on [2Y,infty]"
+  },
+  "warning": "Compact boundary removes boundary y-tail; complement must be covered by far/nonstationary reassignment certificate.",
+  "hash": "ebfb994f3aa2d2ef6b04574b602974265ae99578133f9143371b61d23a9f0a56"
+}

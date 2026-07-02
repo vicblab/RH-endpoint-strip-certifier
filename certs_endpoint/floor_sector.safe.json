@@ -1,0 +1,22 @@
+{
+  "C_sigma_derivative_upper": "0",
+  "C_sigma_derivative_upper_safe": "0",
+  "C_value_upper": "0",
+  "C_value_upper_safe": "0",
+  "coverage_hash": "d8ea71386b05c4a24af86fed03322e25749a0589eb951d1b36154eb154f0ead0",
+  "coverage_stamp_hash": "df4033962bc5822d4436c17a94499c9bae6fef582360ef09149b2fd30b156150",
+  "coverage_statement": "certified on sigma in [0,0.01], tau >= 10; stamped from the endpoint run command",
+  "mathematical_statement": "R_floor(s)=0 identically; d/dsigma R_floor(s)=0.",
+  "method": "half_open_floor_sector_identically_zero",
+  "normalization_hash": "1ebc3451c8191b923aca49a0e6ac57f5214f6983f8d8d0b131e47bc40e34bc05",
+  "proof_hash": "12faf97fd4f2a1ee78aac35194f772ed0977800d20b162b8bd5701c4bcdde2eb",
+  "safe_normalization_rule": "safe=0 if raw=0 else raw*(1+1e-12)+100",
+  "sector": "floor",
+  "side": "zero",
+  "sigma_max": "0.01",
+  "sigma_min": "0",
+  "source_raw_file": "certs_endpoint/floor_sector.raw.json",
+  "stamped_json_hash": "cdd7b57094f1f6814e175f4465d4eb44811b0fb3880fce9d07876d8e4e9e734b",
+  "status": "proved",
+  "tau_min": "10"
+}

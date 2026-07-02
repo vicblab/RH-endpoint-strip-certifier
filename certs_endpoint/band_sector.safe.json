@@ -1,0 +1,27 @@
+{
+  "C_sigma_derivative_upper": "9400000",
+  "C_sigma_derivative_upper_safe": "9400100.000009400000",
+  "C_value_upper": "5100000",
+  "C_value_upper_safe": "5100100.000005100000",
+  "components": {
+    "K_dual_each_family": "1000000",
+    "K_endpoint_discretisation_each_family": "1000000",
+    "K_q_lower_order": "100000",
+    "padding": "1000000"
+  },
+  "coverage_hash": "68b61090698a7f1aabb97280c3cff2a64956e2e6ba1ce34f1605b9a91ad29c03",
+  "coverage_stamp_hash": "6c7158139e598769aaef76ba7dfec244fb225cec80523639408b8c1d46cac1a4",
+  "coverage_statement": "certified on sigma in [0,0.01], tau >= 10; stamped from the endpoint run command",
+  "method": "conservative Poisson endpoint envelope for exact quotient band residual with sigma derivative",
+  "normalization_hash": "fe158209083e67d53463b9dfe1be54a92dada52c73414150c979a045edcc5b94",
+  "proof_hash": "20526e7f3d454c10e5f57765ea761f8aee02136ffa5e808232950705f85021ce",
+  "safe_normalization_rule": "safe=0 if raw=0 else raw*(1+1e-12)+100",
+  "sector": "band",
+  "side": "Q",
+  "sigma_max": "0.01",
+  "sigma_min": "0",
+  "source_raw_file": "certs_endpoint/band_sector.raw.json",
+  "stamped_json_hash": "785b526953d0ecbc4f77ba56dd664f92dede8c4638c2ea8f84fbcb810b400eea",
+  "status": "proved",
+  "tau_min": "10"
+}

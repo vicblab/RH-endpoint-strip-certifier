@@ -1,0 +1,11 @@
+{
+  "status": "endpoint_left_full_certificate",
+  "sigma_min": "0",
+  "sigma_max": "0.01",
+  "tau_min": "10",
+  "normalization": "N_Q",
+  "bracket_gap_lower": "0.20405207717382234",
+  "height_tested": "1E+30",
+  "height_condition_holds": true,
+  "proof_hash": "49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20"
+}

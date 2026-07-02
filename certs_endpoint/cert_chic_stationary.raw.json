@@ -1,0 +1,39 @@
+{
+  "status": "proved",
+  "C_chic_stationary": "94.213670537009453325276960443624368348450111293208112112369151705567250575538573",
+  "method": "absolute Arb box bound on stationary-overlap compact-complement transition boxes; boxes with separated phase are excluded and handled by C_chic_nonstationary",
+  "domain": {
+    "sigma": "[0.0,0.01]",
+    "w": "[0,0.31622776601683794]",
+    "r": [
+      -4.0,
+      32.0
+    ],
+    "y": [
+      128.0,
+      256.0
+    ],
+    "lambda0": 0.25
+  },
+  "boxes": {
+    "ns": 4,
+    "nw": 16,
+    "nr": 96,
+    "ny": 128,
+    "stationary_boxes_counted": 30000,
+    "separated_boxes_skipped": 1542864
+  },
+  "worst_box": [
+    0,
+    0,
+    0,
+    127,
+    "-",
+    -4.0,
+    -3.625,
+    255.0,
+    256.0,
+    "0.054435480328787845065036870387191064963214976816608321980510423743312494401104174"
+  ],
+  "proof_hash": "93796d0ba8692411a3d01c1f5dc9b23c2f1a4254ebc52e82df236738c41bfca3"
+}

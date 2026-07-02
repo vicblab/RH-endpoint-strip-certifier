@@ -1,0 +1,29 @@
+{
+  "C_sigma_derivative_upper": "40000000000",
+  "C_value_upper": "20000000000",
+  "components": {
+    "K_always_nonstationary_minus": {
+      "C_sigma_derivative_upper": "10000000000",
+      "C_value_upper": "5000000000"
+    },
+    "K_always_nonstationary_plus": {
+      "C_sigma_derivative_upper": "10000000000",
+      "C_value_upper": "5000000000"
+    },
+    "K_partition_guard": {
+      "C_sigma_derivative_upper": "6000000000",
+      "C_value_upper": "3000000000"
+    },
+    "K_potential_stationary_outside_range": {
+      "C_sigma_derivative_upper": "14000000000",
+      "C_value_upper": "7000000000"
+    }
+  },
+  "coverage_hash": "0cc74dec8517c32d4fef41dc6edbaeeb5432910f46050f18c5431d053938101a",
+  "method": "conservative global four-family nonstationary IBP envelope with sigma derivative",
+  "normalization_hash": "48f636ddee16ce7662ecfdc5dcdb6d4d99c2117365cb4aabdbd2d73a0ac485af",
+  "proof_hash": "965da72fa0b02bcb21295b6de2a0399f90c1c4ec972e55c3131e4af9ac65bbe8",
+  "sector": "nonstat",
+  "side": "J_projected",
+  "status": "proved"
+}

@@ -1,0 +1,17 @@
+{
+  "C_sigma_derivative_upper": "9400000",
+  "C_value_upper": "5100000",
+  "components": {
+    "K_dual_each_family": "1000000",
+    "K_endpoint_discretisation_each_family": "1000000",
+    "K_q_lower_order": "100000",
+    "padding": "1000000"
+  },
+  "coverage_hash": "68b61090698a7f1aabb97280c3cff2a64956e2e6ba1ce34f1605b9a91ad29c03",
+  "method": "conservative Poisson endpoint envelope for exact quotient band residual with sigma derivative",
+  "normalization_hash": "fe158209083e67d53463b9dfe1be54a92dada52c73414150c979a045edcc5b94",
+  "proof_hash": "84bf51e4a17ac34f027a3047b56ba949a9a8a251fd024e03cc2840acd23e11e5",
+  "sector": "band",
+  "side": "Q",
+  "status": "proved"
+}

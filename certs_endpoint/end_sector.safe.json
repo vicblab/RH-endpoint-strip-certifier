@@ -1,0 +1,36 @@
+{
+  "C_sigma_derivative_upper": "281000000",
+  "C_sigma_derivative_upper_safe": "281000100.000281000000",
+  "C_value_upper": "71000000",
+  "C_value_upper_safe": "71000100.000071000000",
+  "components": {
+    "first_cell_plus_zeta2_cancellation": {
+      "C_sigma_derivative_upper": "40000000",
+      "C_value_upper": "10000000"
+    },
+    "padding": "1000000",
+    "post_ibp_endpoint_remainder": {
+      "C_sigma_derivative_upper": "200000000",
+      "C_value_upper": "50000000"
+    },
+    "xiend_coefficient_correction": {
+      "C_sigma_derivative_upper": "40000000",
+      "C_value_upper": "10000000"
+    }
+  },
+  "coverage_hash": "9bf29d496fa65a7c39f44408f98abc4938170fea9649ff298e1f5b810b0b036f",
+  "coverage_stamp_hash": "fe34b3df13e78357a0c8a184eea3888c1d56503cf673a0936cdc67ed5060b5f0",
+  "coverage_statement": "certified on sigma in [0,0.01], tau >= 10; stamped from the endpoint run command",
+  "method": "conservative endpoint first-cell Xi_end post-IBP envelope with sigma derivative",
+  "normalization_hash": "94996a248e5c5c1c61a9856b4fc6575b5fbe6511967b919a48fe07b7035ee356",
+  "proof_hash": "26342ce8a2b1f2f593f965046685bbe9f64f2d2af3f7cb2389a4c87fdcd0180d",
+  "safe_normalization_rule": "safe=0 if raw=0 else raw*(1+1e-12)+100",
+  "sector": "end",
+  "side": "J_projected",
+  "sigma_max": "0.01",
+  "sigma_min": "0",
+  "source_raw_file": "certs_endpoint/end_sector.raw.json",
+  "stamped_json_hash": "6e7f92b362452c0b1478c00d93a59ad82e69a9c130cd93da044049cf710477ad",
+  "status": "proved",
+  "tau_min": "10"
+}

@@ -1,0 +1,30 @@
+{
+  "status": "compact_boundary_fragment",
+  "subsector": "bd_high_tail_compact_finite_w_r",
+  "w_range": [
+    0.0125,
+    0.025
+  ],
+  "r_range": [
+    4,
+    32.0
+  ],
+  "Y": 128.0,
+  "A_tail_sc_compact_fragment_upper": 286850233.43947935,
+  "worst_box": [
+    0,
+    0,
+    47,
+    "-",
+    286850233.43947935
+  ],
+  "missing_for_full_certificate": [
+    "r>=R compact-complement tail reassignment"
+  ],
+  "cutoff": {
+    "type": "cubic",
+    "chi": "1 on [0,Y], 1-3t^2+2t^3 on [Y,2Y], 0 on [2Y,infty]"
+  },
+  "warning": "Compact boundary removes boundary y-tail; complement must be covered by far/nonstationary reassignment certificate.",
+  "hash": "c6c2bc7c5dc7d39111f21f55f57ba1d6531322b2cbd1154b9be8b51e861d9cb8"
+}
