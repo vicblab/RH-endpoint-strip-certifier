@@ -1,0 +1,2560 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{longtable}
+\usepackage{seqsplit}
+\usepackage{xurl}
+
+\newcommand{\LongConst}[1]{%
+\begingroup
+\footnotesize\ttfamily\seqsplit{#1}%
+\endgroup
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\Ima}{Im}
+
+\newcommand{\zetaF}{\zeta}
+\newcommand{\crit}{\tfrac12}
+\newcommand{\NQ}{N_Q}
+\newcommand{\Beff}{B_{\mathrm{eff}}}
+\newcommand{\Rtot}{R_{\mathrm{total}}}
+\newcommand{\Cend}{C_{\mathrm{end}}}
+\newcommand{\dend}{d_{\mathrm{end}}}
+\newcommand{\ii}{\mathrm{i}}
+
+\title{Endpoint Certification for the Mellin Symmetric Quotient Obstruction}
+\author{V\'ictor Blanco Bataller}
+\date{2 July 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper closes the endpoint component of a Mellin symmetric quotient obstruction for the Riemann zeta function at high height.  The previously certified quotient-obstruction analysis covers the off-critical band
+\[
+0.01\leq \Rea(s)\leq 0.99,
+\qquad
+\Rea(s)\neq \frac12,
+\qquad
+|\Ima(s)|\geq 10^{30}.
+\]
+The only remaining high-height endpoint neighborhoods are
+\[
+0<\Rea(s)<0.01,
+\qquad
+0.99<\Rea(s)<1.
+\]
+
+This endpoint theorem is conditional on two independently checkable inputs:
+the structural quotient-obstruction theorem and the endpoint certificate
+repository reproducing the final JSON certificate with the stated status and
+hash.
+
+The endpoint problem is structurally different from the inner-strip problem.  Near the critical line the one-channel bracket degenerates and must be replaced by a reflected two-channel detector; near the endpoint \(\sigma=0\), by contrast, the effective bracket is strongly nonzero.  The endpoint obstruction is therefore reduced to proving an endpoint-uniform residual certificate.
+
+The endpoint certificate required for this theorem uses the closed computational
+enclosure
+\[
+0\leq \sigma\leq 0.01,
+\]
+while the analytic zero-exclusion theorem is applied only on the open endpoint
+strip
+\[
+0<\sigma<0.01.
+\]
+The certificate proves a residual bound with public rounded-up cap
+\[
+\Cend < 9.26\times10^{10}.
+\]
+The endpoint bracket lower bound is
+\[
+\dend=0.20405207717382234.
+\]
+The final certified height comparison is
+\[
+\sqrt{10^{30}}
+>
+\frac{\Cend}{\dend}\log(10^{30}),
+\]
+with numerical values
+\[
+10^{15}
+>
+3.14\times10^{13}.
+\]
+Subject to the structural quotient-obstruction theorem and to independent reproduction of the finite certificate repository, this excludes nontrivial zeros in the left endpoint strip
+\[
+0<\Rea(s)<0.01,
+\qquad
+\Ima(s)\geq 10^{30}.
+\]
+By reflection and conjugation symmetry, the right endpoint and negative-height endpoints follow.  Combined with the previously certified outer and inner strips, this gives the high-height conclusion that every nontrivial zero \(\rho\) of \(\zeta(s)\) with
+\[
+|\Ima(\rho)|\geq 10^{30}
+\]
+lies on the critical line.  This is a high-height RH theorem, not a standalone proof of the full Riemann Hypothesis at all heights; the finite range below the analytic threshold must be handled by a separate finite-height verification.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+The Riemann Hypothesis is a statement of exact alignment.  It asserts that every nontrivial zero of the zeta function lies on the line
+\[
+\Rea(s)=\frac12.
+\]
+The usual shape of the problem is global, but the method pursued here is local in the real part and asymptotic in the height.  The guiding idea is to transform the zero condition into a quotient obstruction: at a nontrivial zero a certain Mellin symmetric numerator must vanish, yet its asymptotic expansion has a main term which cannot be cancelled by its certified residual.
+
+The previous parts of this project divided the critical strip into regions where the quotient obstruction behaves differently.  This division is not cosmetic.  The scalar one-channel obstruction works on fixed outer strips away from the critical line.  Near the critical line, the scalar bracket degenerates and the correct test becomes a reflected two-channel vector obstruction.  Near the endpoints \(0\) and \(1\), however, the situation changes again.  The bracket does not degenerate at \(\sigma=0\).  Indeed, it becomes large enough that the endpoint problem is not a problem of detecting the main term, but a problem of certifying that the residual remains uniformly controlled all the way down to the endpoint.
+
+The present paper treats precisely this endpoint problem.  Its purpose is to remove the two high-height gaps
+\[
+0<\Rea(s)<0.01
+\]
+and
+\[
+0.99<\Rea(s)<1
+\]
+which remain after the certified outer and inner strip arguments.
+
+The proof has two layers.
+
+First, there is a mathematical layer.  We import the quotient numerator
+\[
+\NQ(s)=B(s)+\frac{s-1}{s}A(s),
+\]
+where
+\[
+A(s)=\int_1^\infty \{x\}x^{-s-1}\,dx,
+\qquad
+B(s)=\int_1^\infty \{x\}x^{s-2}\,dx.
+\]
+At every nontrivial zero, the structural quotient identity gives
+\[
+\NQ(s)=0.
+\]
+The endpoint expansion has the form
+\[
+\NQ(s)=\frac{\ii}{\tau}\Beff(\sigma,\tau)+\Rtot(s),
+\qquad
+s=\sigma+i\tau.
+\]
+Thus a zero in the endpoint strip would require the residual term to cancel the effective bracket.
+
+Second, there is a finite certificate layer.  The residual \(\Rtot\) is decomposed into seven sectors:
+\[
+\mathrm{band},
+\quad
+\mathrm{bd},
+\quad
+\mathrm{far},
+\quad
+\mathrm{end},
+\quad
+\mathrm{nonstat},
+\quad
+\mathrm{floor},
+\quad
+\mathrm{core}.
+\]
+Each sector is certified by interval arithmetic or by a conservative analytic certificate with machine-checkable JSON output.  The final certificate file is
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}.
+\]
+Its decisive fields are
+\[
+\texttt{status = endpoint\_left\_full\_certificate}
+\]
+and
+\[
+\texttt{height\_condition\_holds = True}.
+\]
+The final proof hash is
+\[
+\texttt{49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20}.
+\]
+
+The heart of the endpoint argument is simple.  The bracket lower bound is
+\[
+|\Beff(\sigma,\tau)|\geq \dend,
+\qquad
+\dend=0.20405207717382234,
+\]
+for
+\[
+0< \sigma\leq 0.01.
+\]
+The certified residual bound is
+\[
+|\Rtot(\sigma+i\tau)|
+\leq
+\Cend\frac{\log\tau}{\tau^{3/2}},
+\]
+with
+\[
+\Cend
+=
+9.26\times10^{10}.
+\]
+If \(\NQ(s)=0\), then the residual must cancel the term
+\[
+        \frac{\ii}{\tau}\Beff(\sigma,\tau).
+\]  This is impossible once
+\[
+\sqrt{\tau}>
+\frac{\Cend}{\dend}\log\tau.
+\]
+The certificate verifies this inequality at \(\tau=10^{30}\).
+
+The paper is written so that every numerical assertion has a declared source.  The bracket constant is derived from the explicit endpoint bracket.  The residual constant is obtained from the finite certificate.  The height comparison is a direct numerical check recorded in the final JSON file.  No hidden heuristic constants are used.
+
+\section{Main theorem and scope}
+
+We first state the theorem in the form actually proved by this endpoint paper.
+
+\begin{theorem}[Endpoint-left exclusion above \(10^{30}\)]
+Assume the structural quotient-obstruction theorem supplies the endpoint expansion
+\[
+\NQ(s)=\frac{\ii}{\tau}\Beff(\sigma,\tau)+\Rtot(s)
+\]
+on
+\[
+0< \sigma\leq 0.01,
+\qquad
+\tau\geq 10,
+\]
+in the normalization
+\[
+\NQ(s)=B(s)+\frac{s-1}{s}A(s).
+\]
+Assume also that the endpoint certificate repository reproduces the final certificate
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\]
+with
+\[
+\texttt{status = endpoint\_left\_full\_certificate}
+\]
+and
+\[
+\texttt{height\_condition\_holds = True}.
+\]
+Then there are no nontrivial zeros of \(\zeta(s)\) in
+\[
+0<\Rea(s)<0.01,
+\qquad
+\Ima(s)\geq 10^{30}.
+\]
+\end{theorem}
+
+The finite interval certificate may use the closed computational enclosure
+\[
+0\le\sigma\le0.01
+\]
+for bounding elementary amplitudes.  The analytic zero-exclusion statement is
+only for the open endpoint strip \(0<\sigma<0.01\), where the Mellin quotient
+normalization is part of the structural interface.
+
+The right endpoint is obtained by the usual symmetry of the nontrivial zeros.
+
+\begin{corollary}[Endpoint pair above \(10^{30}\)]
+Under the same hypotheses, there are no nontrivial zeros of \(\zeta(s)\) in the endpoint neighborhoods
+\[
+0<\Rea(s)<0.01
+\]
+or
+\[
+0.99<\Rea(s)<1
+\]
+for
+\[
+|\Ima(s)|\geq 10^{30}.
+\]
+\end{corollary}
+
+\begin{proof}
+The left endpoint at positive height is the endpoint-left theorem.  If a zero existed with
+\[
+0.99<\Rea(s)<1,
+\]
+then the functional equation symmetry would give a corresponding nontrivial zero with real part
+\[
+1-\Rea(s)\in(0,0.01).
+\]
+This contradicts the left endpoint theorem.  Negative heights follow by conjugation symmetry.
+\end{proof}
+
+The endpoint theorem combines with the already certified outer and inner strips.
+
+\begin{theorem}[High-height critical-line confinement above \(10^{30}\)]
+Assume the structural quotient-obstruction theorem and all endpoint, outer-strip, and inner-strip certificates are independently reproduced with their required final statuses.  Then every nontrivial zero \(\rho\) of \(\zeta(s)\) with
+\[
+|\Ima(\rho)|\geq 10^{30}
+\]
+satisfies
+\[
+\Rea(\rho)=\frac12.
+\]
+\end{theorem}
+
+\begin{remark}
+This is a high-height theorem.  It does not by itself settle the finite range
+\[
+0<|\Ima(s)|<10^{30}.
+\]
+A complete proof of the Riemann Hypothesis would require combining this high-height theorem with a rigorous finite-height verification below \(10^{30}\).
+\end{remark}
+
+\section{The quotient numerator}
+
+The endpoint argument begins with the same quotient numerator used in the outer and inner analyses:
+\[
+\NQ(s)=B(s)+\frac{s-1}{s}A(s),
+\]
+where
+\[
+A(s)=\int_1^\infty \{x\}x^{-s-1}\,dx
+\]
+and
+\[
+B(s)=\int_1^\infty \{x\}x^{s-2}\,dx.
+\]
+The precise structural theorem imported into this paper is the following.
+
+\begin{proposition}[Imported zero condition]
+At every nontrivial zero \(s\) of \(\zeta(s)\), the quotient numerator satisfies
+\[
+\NQ(s)=0.
+\]
+\end{proposition}
+
+This proposition converts the zero problem into an obstruction problem.  Instead of seeking zeros of \(\zeta(s)\) directly, we show that the equation
+\[
+\NQ(s)=0
+\]
+is impossible in the endpoint strip at sufficiently large height.
+
+The endpoint expansion has the form
+\[
+\NQ(s)=\frac{\ii}{\tau}\Beff(\sigma,\tau)+\Rtot(s),
+\qquad
+s=\sigma+i\tau.
+\]
+The effective bracket is
+\[
+\Beff(\sigma,\tau)
+=
+2^\sigma e^{iL}
+\left(
+\frac{12-\sigma}{48}
++
+\frac{iX}{4}
+\right)
+-
+2^{-\sigma}e^{-iL}
+\left(
+\frac{11+\sigma}{24}
+-
+\frac{iX}{2}
+\right),
+\]
+where
+\[
+L=\tau\log 2,
+\qquad
+X=\Xi_{\mathrm{end}}(\tau)\in\mathbb{R}.
+\]
+Only the reality of \(X\) is needed for the endpoint bracket lower bound.
+
+Thus the endpoint proof reduces to two estimates:
+\[
+|\Beff(\sigma,\tau)|\geq \dend
+\]
+and
+\[
+|\Rtot(\sigma+i\tau)|
+\leq
+\Cend\frac{\log\tau}{\tau^{3/2}}.
+\]
+
+\section{The endpoint bracket does not degenerate}
+
+The effective endpoint bracket can be written as
+\[
+\Beff=P e^{iL}-Qe^{-iL},
+\]
+where
+\[
+P
+=
+2^\sigma
+\left(
+\frac{12-\sigma}{48}
++
+\frac{iX}{4}
+\right),
+\]
+and
+\[
+Q
+=
+2^{-\sigma}
+\left(
+\frac{11+\sigma}{24}
+-
+\frac{iX}{2}
+\right).
+\]
+By the reverse triangle inequality,
+\[
+|\Beff|
+=
+|P e^{iL}-Qe^{-iL}|
+\geq
+\bigl||Q|-|P|\bigr|.
+\]
+Now
+\[
+|P|
+=
+\frac{2^\sigma}{48}
+\sqrt{(12-\sigma)^2+144X^2},
+\]
+and
+\[
+|Q|
+=
+\frac{2^{-\sigma}}{24}
+\sqrt{(11+\sigma)^2+144X^2}.
+\]
+Define
+\[
+D(\sigma,X)
+=
+\frac{2^{-\sigma}}{24}
+\sqrt{(11+\sigma)^2+144X^2}
+-
+\frac{2^\sigma}{48}
+\sqrt{(12-\sigma)^2+144X^2}.
+\]
+For
+\[
+0< \sigma\leq 0.01,
+\]
+the difference \(D(\sigma,X)\) is minimized at \(X=0\).  Hence
+\[
+D(\sigma,X)\geq D(\sigma,0).
+\]
+At \(X=0\),
+\[
+D(\sigma,0)
+=
+\frac{2^{-\sigma}(11+\sigma)}{24}
+-
+\frac{2^\sigma(12-\sigma)}{48}.
+\]
+This expression is minimized on the interval \(0\leq \sigma\leq0.01\) at the right endpoint.  Therefore
+\[
+|\Beff(\sigma,\tau)|
+\geq
+\frac{2^{-0.01}(11.01)}{24}
+-
+\frac{2^{0.01}(11.99)}{48}.
+\]
+We define
+\[
+\dend
+:=
+\frac{2^{-0.01}(11.01)}{24}
+-
+\frac{2^{0.01}(11.99)}{48}.
+\]
+A direct outward-rounded numerical evaluation gives
+\[
+\dend>0.20405207717382234.
+\]
+The certificate uses the rounded lower value
+\[
+\dend=0.20405207717382234.
+\]
+
+
+\begin{lemma}[Endpoint amplitude gap is minimized at \(X=0\)]
+Let
+\[
+a(\sigma)=\frac{2^{-\sigma}}{24},
+\qquad
+b(\sigma)=\frac{2^\sigma}{48},
+\]
+\[
+A(\sigma)=(11+\sigma)^2,
+\qquad
+B(\sigma)=(12-\sigma)^2.
+\]
+For \(0\le\sigma\le0.01\), define
+\[
+D(\sigma,X)
+=
+a(\sigma)\sqrt{A(\sigma)+144X^2}
+-
+b(\sigma)\sqrt{B(\sigma)+144X^2}.
+\]
+Then \(D(\sigma,X)\) is minimized, as a function of \(X\in\mathbb R\), at
+\(X=0\).
+\end{lemma}
+
+\begin{proof}
+The function is even in \(X\), so set \(Y=X^2\ge0\).  Then
+\[
+D(\sigma,Y)
+=
+a(\sigma)\sqrt{A(\sigma)+144Y}
+-
+b(\sigma)\sqrt{B(\sigma)+144Y}.
+\]
+It is enough to prove that
+\[
+\frac{\partial D}{\partial Y}\ge0.
+\]
+We have
+\[
+\frac{\partial D}{\partial Y}
+=
+72\left(
+\frac{a(\sigma)}{\sqrt{A(\sigma)+144Y}}
+-
+\frac{b(\sigma)}{\sqrt{B(\sigma)+144Y}}
+\right).
+\]
+Thus it suffices to prove
+\[
+a(\sigma)^2(B(\sigma)+144Y)
+\ge
+b(\sigma)^2(A(\sigma)+144Y).
+\]
+Equivalently,
+\[
+a(\sigma)^2B(\sigma)-b(\sigma)^2A(\sigma)
++
+144Y(a(\sigma)^2-b(\sigma)^2)
+\ge0.
+\]
+On \(0\le\sigma\le0.01\), one has \(a(\sigma)>b(\sigma)\), so the
+coefficient of \(Y\) is positive.  It remains to check the endpoint-free term:
+\[
+a(\sigma)^2B(\sigma)-b(\sigma)^2A(\sigma)
+=
+\frac{2^{-2\sigma}(12-\sigma)^2}{24^2}
+-
+\frac{2^{2\sigma}(11+\sigma)^2}{48^2}.
+\]
+Equivalently, after multiplying by \(48^2\),
+\[
+4\cdot 2^{-2\sigma}(12-\sigma)^2
+-
+2^{2\sigma}(11+\sigma)^2.
+\]
+This expression is positive throughout \(0\le\sigma\le0.01\).  Indeed, its
+minimum on this interval is bounded below by its direct interval evaluation,
+and at the right endpoint it remains positive.  
+
+A direct outward-rounded interval evaluation gives the lower bound
+\[
+4\cdot 2^{-2\sigma}(12-\sigma)^2
+-
+2^{2\sigma}(11+\sigma)^2
+>
+444
+\]
+on \(0\le\sigma\le0.01\).
+
+Therefore
+\[
+\frac{\partial D}{\partial Y}\ge0,
+\]
+so \(D(\sigma,X)\) is minimized at \(X=0\).
+\end{proof}
+
+\begin{lemma}[Endpoint bracket lower bound]
+For
+\[
+0\leq \sigma\leq0.01
+\]
+and real \(X=\Xi_{\mathrm{end}}(\tau)\),
+\[
+|\Beff(\sigma,\tau)|\geq 0.20405207717382234.
+\]
+\end{lemma}
+
+\begin{proof}
+The proof is exactly the reverse-triangle estimate above.  The two amplitudes have a uniform gap on the endpoint interval.  Since the \(Q\)-amplitude dominates the \(P\)-amplitude even at \(X=0\), and the domination only improves after introducing the common \(144X^2\) term, the minimum occurs at \(X=0\).  Evaluating the resulting elementary function on \(0\leq\sigma\leq0.01\) gives the stated lower bound.
+\end{proof}
+
+
+
+\section{The residual as a finite certificate problem}
+
+The endpoint bracket estimate proves that the main term in the quotient obstruction is not small near \(\sigma=0\).  This is the decisive simplification of the endpoint problem.  Once the bracket is separated from zero, the remaining task is to prove that the residual is too small to cancel it at high height.
+
+The residual in the endpoint expansion is written as
+\[
+\Rtot(s)
+=
+R_{\mathrm{band}}(s)
++
+R_{\mathrm{bd}}(s)
++
+R_{\mathrm{far}}(s)
++
+R_{\mathrm{end}}(s)
++
+R_{\mathrm{nonstat}}(s)
++
+R_{\mathrm{floor}}(s)
++
+R_{\mathrm{core}}(s).
+\]
+The seven labels correspond to seven different analytic origins of error.  The decomposition is inherited from the quotient-obstruction analysis, but the endpoint certificate reruns the relevant estimates on the compact endpoint box
+\[
+0< \sigma\leq 0.01.
+\]
+Thus the endpoint result is not obtained by continuity from the old outer-strip certificate.  It is a separate endpoint certificate with its own coverage hashes, constants, and final height comparison.
+
+The certificate proves sector bounds of the form
+\[
+|R_\nu(s)|
+\leq
+C_\nu\frac{\log\tau}{\tau^{3/2}},
+\]
+for each sector
+\[
+\nu\in
+\{
+\mathrm{band},
+\mathrm{bd},
+\mathrm{far},
+\mathrm{end},
+\mathrm{nonstat},
+\mathrm{floor},
+\mathrm{core}
+\}.
+\]
+The endpoint residual constant is the strict sum
+\[
+\Cend
+=
+C_{\mathrm{band}}
++
+C_{\mathrm{bd}}
++
+C_{\mathrm{far}}
++
+C_{\mathrm{end}}
++
+C_{\mathrm{nonstat}}
++
+C_{\mathrm{floor}}
++
+C_{\mathrm{core}}.
+\]
+The use of a strict sum is deliberately conservative.  No cancellation between sectors is assumed in the final certificate.  Each sector is allowed to contribute independently to the residual bound, and the final obstruction must survive this worst-case summation.
+
+For the endpoint certificate claimed by the repository release, the final safety-normalized sector constants are recorded in the final JSON as follows:
+\[
+\begin{array}{c|c}
+\text{sector} & C_{\nu,\mathrm{safe}}\ \text{public cap} \\ \hline
+\mathrm{band} & 5.101\times10^6 \\
+\mathrm{bd} & 2.245\times10^{10} \\
+\mathrm{far} & 5.001\times10^{10} \\
+\mathrm{end} & 7.101\times10^7 \\
+\mathrm{nonstat} & 2.001\times10^{10} \\
+\mathrm{floor} & 0 \\
+\mathrm{core} & 101
+\end{array}
+\]
+
+The exact decimal constants are recorded in the final JSON certificate and
+listed in Appendix~\ref{app:exact-endpoint-constants}.  The body of the paper
+uses rounded-up public caps to avoid dependence on last-digit formatting and to
+keep the theorem statements readable.
+Their sum is
+\[
+\Cend
+=
+9.26\times10^{10}.
+\]
+
+\begin{remark}
+The dominant endpoint constants are the far sector, the boundary sector, and the global nonstationary sector.  This has two consequences.  First, the endpoint certificate has large safety margin at height \(10^{30}\).  Second, any serious later attempt to lower the analytic height threshold must begin with those three sectors.
+\end{remark}
+
+\section{Meaning of the seven sectors}
+
+We now record the role of each sector.  This is not merely bookkeeping.  The endpoint proof is a finite reduction only because every contribution has an assigned place in the ledger.
+
+\subsection{The band sector}
+
+The band sector records the finite transition contribution produced by the exact quotient band.  It is the part of the residual where the quotient obstruction observes the mismatch between the stationary range naturally associated with the centered quotient expression and the stationary range naturally associated with the companion target expansion.
+
+The endpoint certificate treats this contribution by a conservative Poisson endpoint envelope.  The corresponding certified safe constant is
+\[
+C_{\mathrm{band}}
+=
+5100100.000005100000.
+\]
+The sector file is
+\[
+\texttt{certs\_endpoint/band\_sector.safe.json}.
+\]
+Its status must be
+\[
+\texttt{proved}.
+\]
+
+\subsection{The boundary sector}
+
+The boundary sector is the largest genuinely delicate finite part of the endpoint certificate.  It contains the compact boundary packet, the high-tail compact packet, and the compact-complement contributions.  The boundary sector is itself assembled from a finite set of subordinate certificate files.
+
+The compact boundary packet is certified on finite boxes after the boundary variable is compactified by a smooth cutoff \(\chi_Y\).  In the reference certificate,
+\[
+Y=128.
+\]
+The cutoff has the form
+\[
+\chi_Y(y)=1
+\quad
+\text{for}
+\quad
+0\leq y\leq Y,
+\]
+then transitions smoothly on
+\[
+Y\leq y\leq 2Y,
+\]
+and vanishes for
+\[
+y\geq 2Y.
+\]
+The complement
+\[
+1-\chi_Y
+\]
+is not discarded.  It is certified through the compact-complement tail, nonstationary, and stationary-overlap hooks.
+
+Thus the boundary certificate is built from the following logical pieces:
+\[
+C_{\mathrm{bd}}
+=
+A_{\mathrm{grouped}}
++
+A_{\mathrm{tail}}
++
+C_{\chi^c,\mathrm{tail}}
++
+C_{\chi^c,\mathrm{nonstat}}
++
+C_{\chi^c,\mathrm{stationary}}.
+\]
+In the successful endpoint run,
+\[
+A_{\mathrm{grouped}}
+=
+71158001.83400355,
+\]
+\[
+A_{\mathrm{tail}}
+=
+22369784191.87126,
+\]
+and the compact-complement hooks are
+\[
+C_{\chi^c,\mathrm{tail}}
+=
+378967.21714296323762304567587667590495189351722596491347131317857292941639108374,
+\]
+\[
+C_{\chi^c,\mathrm{nonstat}}
+=
+26601.258034161949158278641214596284860630401098005702127355221286417618216469536,
+\]
+\[
+C_{\chi^c,\mathrm{stationary}}
+=
+94.213670537009453325276960443624368348450111293208112112369151705567250575538573.
+\]
+After safe normalization, the certified boundary sector constant is
+\[
+C_{\mathrm{bd}}
+=
+22441347956.41655256005262876080624795046377492408424944469607921603283476338262713986717485812881457.
+\]
+The sector file is
+\[
+\texttt{certs\_endpoint/bd\_sector.safe.json}.
+\]
+
+\begin{remark}
+The boundary merger is one of the critical audit points of the repository.  It must be checked that every compact fragment and every compact-complement hook is included exactly once, and that no complement term is silently set to zero.
+\end{remark}
+
+\subsection{The far sector}
+
+The far sector controls stationary and post-stationary contributions beyond the compact packet.  It is deliberately conservative in the current certificate.  Its safe endpoint constant is
+\[
+C_{\mathrm{far}}
+=
+50000000100.050000000000.
+\]
+The sector file is
+\[
+\texttt{certs\_endpoint/far\_sector.safe.json}.
+\]
+This is the largest single sector in the endpoint certificate.
+
+\subsection{The endpoint sector}
+
+The endpoint sector contains the local endpoint correction terms.  These include first-cell corrections, the endpoint scalar contribution, and the post-integration-by-parts endpoint remainder.  The safe endpoint constant is
+\[
+C_{\mathrm{end}}
+=
+71000100.000071000000
+\]
+for the sector named \(\mathrm{end}\).  To avoid conflict with the notation \(\Cend\) for the total endpoint constant, one may denote the sector constant as
+\[
+C_{\mathrm{sector,end}}.
+\]
+The sector file is
+\[
+\texttt{certs\_endpoint/end\_sector.safe.json}.
+\]
+
+\subsection{The nonstationary sector}
+
+The global nonstationary sector controls four-family contributions in which the phase derivative is separated from zero.  It is a broad integration-by-parts envelope and is intentionally conservative.  Its safe endpoint constant is
+\[
+C_{\mathrm{nonstat}}
+=
+20000000100.020000000000.
+\]
+The sector file is
+\[
+\texttt{certs\_endpoint/nonstat\_sector.safe.json}.
+\]
+
+\subsection{The floor sector}
+
+The floor sector is identically zero by the half-open convention used in the decomposition.  The certificate records
+\[
+C_{\mathrm{floor}}=0.
+\]
+The sector file is
+\[
+\texttt{certs\_endpoint/floor\_sector.safe.json}.
+\]
+The certificate status must still be present.  A zero sector is not an omitted sector; it is a proved zero contribution.
+
+\subsection{The core sector}
+
+The core sector records the residual algebraic mismatch in the quotient normalization.  In the endpoint certificate it is small:
+\[
+C_{\mathrm{core}}
+=
+100.15072805704313334704386963206753565903107621951632486886703378840451863730335.
+\]
+The sector file is
+\[
+\texttt{certs\_endpoint/core\_sector.safe.json}.
+\]
+
+\section{The finite certificate contract}
+
+\begin{definition}[Endpoint repository acceptance]
+The endpoint repository is accepted for the purposes of this paper only if an
+independent run of
+\[
+\texttt{./run\_endpoint\_certificate.sh}
+\]
+regenerates
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\]
+with
+\[
+\texttt{status = endpoint\_left\_full\_certificate},
+\]
+\[
+\texttt{height\_condition\_holds = True},
+\]
+and proof hash
+\[
+\texttt{49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20}.
+\]
+Every sector dependency must have status
+\[
+\texttt{proved}.
+\]
+\end{definition}
+
+A computer certificate is only useful if it fails closed.  The endpoint repository therefore uses explicit JSON statuses and coverage fields.  The final certificate is not accepted unless all seven sector files are present, all have status
+\[
+\texttt{proved},
+\]
+and the final height inequality is true.
+
+The final endpoint certificate file is
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}.
+\]
+It must contain
+\[
+\texttt{status = endpoint\_left\_full\_certificate}
+\]
+and
+\[
+\texttt{height\_condition\_holds = True}.
+\]
+It must also declare the endpoint coverage fields
+\[
+\texttt{sigma\_min = 0},
+\qquad
+\texttt{sigma\_max = 0.01},
+\qquad
+\texttt{tau\_min = 10}.
+\]
+
+The final merge checks the inequality
+\[
+\sqrt{T}>
+\frac{\Cend}{\dend}\log T.
+\]
+For the reference run,
+\[
+T=10^{30},
+\]
+\[
+\Cend
+=
+9.26\times10^{10},
+\]
+and
+\[
+\dend=0.20405207717382234.
+\]
+The certificate records
+\[
+\sqrt{T}=10^{15}
+\]
+and
+\[
+\frac{\Cend}{\dend}\log T
+=
+3.14\times10^{13}.
+\]
+Hence
+\[
+10^{15}
+>
+3.14\times10^{13}.
+\]
+
+The final certificate hash is
+\[
+\texttt{49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20}.
+\]
+
+\begin{definition}[Endpoint certificate]
+An endpoint-left certificate is accepted if and only if the final JSON file contains:
+\[
+\texttt{status = endpoint\_left\_full\_certificate},
+\]
+\[
+\texttt{height\_condition\_holds = True},
+\]
+\[
+\texttt{sigma\_min = 0},
+\quad
+\texttt{sigma\_max = 0.01},
+\quad
+\texttt{tau\_min = 10},
+\]
+and all seven dependent sector certificates have status
+\[
+\texttt{proved}.
+\]
+\end{definition}
+
+\begin{remark}
+The endpoint certificate is not a numerical sample.  It is a finite interval certificate.  Its validity depends on interval-certified boxes, certified sector constants, exact sector coverage metadata, and a strict final merge.
+\end{remark}
+
+\section{The repository as a reproducible proof object}
+
+The endpoint certificate is implemented in the repository
+\[
+\texttt{RH-endpoint-strip-certifier}.
+\]
+
+For publication, the repository URL, release tag or commit hash, dependency
+versions, and the final JSON artifact must be archived.  In the present paper,
+the endpoint certificate is accepted only as a conditional proof object: the
+theorem applies after independent reproduction confirms that the final JSON has
+the stated status, constants, coverage fields, and proof hash.
+
+
+The reproduction command is
+\[
+\texttt{./run\_endpoint\_certificate.sh}.
+\]
+A successful run regenerates
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\]
+and verifies that its final status is
+\[
+\texttt{endpoint\_left\_full\_certificate}.
+\]
+
+The repository contains:
+\[
+\texttt{scripts/}
+\]
+for the sector and boundary certifiers,
+\[
+\texttt{certs\_endpoint/}
+\]
+for the generated sector and hook JSON files,
+and
+\[
+\texttt{SHA256SUMS.txt}
+\]
+for release integrity checking.
+
+For independent verification, one runs:
+\[
+\texttt{python -m json.tool ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\]
+to confirm that the final file is valid JSON, and then checks the decisive fields:
+\[
+\texttt{status},
+\quad
+\texttt{C\_endpoint\_residual\_upper\_safe},
+\quad
+\texttt{bracket\_gap\_lower},
+\quad
+\texttt{height\_condition\_holds},
+\quad
+\texttt{proof\_hash}.
+\]
+
+The intended reproducibility principle is simple: the paper proves why such a certificate is enough, and the repository proves the finite inequalities.  Neither part is allowed to substitute for the other.
+
+
+\section{From the finite certificate to the endpoint theorem}
+
+We now prove that the endpoint certificate implies the endpoint-left zero exclusion.
+
+The argument is short, but it is the point at which the paper moves from numerical certification to a zero-exclusion theorem. The logical dependencies are the following.
+
+First, every nontrivial zero in the critical strip satisfies the quotient numerator equation
+\[
+\NQ(s)=0.
+\]
+Second, in the endpoint box, the structural quotient expansion gives
+\[
+\NQ(s)=\frac{\ii}{\tau}\Beff(\sigma,\tau)+\Rtot(s).
+\]
+Third, the endpoint bracket lemma gives
+\[
+|\Beff(\sigma,\tau)|\geq \dend,
+\qquad
+\dend=0.20405207717382234.
+\]
+Fourth, the finite certificate gives
+\[
+|\Rtot(\sigma+i\tau)|
+\leq
+\Cend\frac{\log\tau}{\tau^{3/2}},
+\]
+where
+\[
+\Cend
+=
+9.26\times10^{10}.
+\]
+Finally, the certificate verifies
+\[
+\sqrt{10^{30}}>
+\frac{\Cend}{\dend}\log(10^{30}).
+\]
+
+The contradiction is obtained by combining these five statements.
+
+\begin{theorem}[Endpoint-left certificate theorem]
+Assume the structural quotient expansion
+\[
+\NQ(s)=\frac{\ii}{\tau}\Beff(\sigma,\tau)+\Rtot(s)
+\]
+holds on
+\[
+0< \sigma\leq 0.01,
+\qquad
+\tau\geq 10,
+\]
+and assume the endpoint certificate
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\]
+has final status
+\[
+\texttt{endpoint\_left\_full\_certificate}.
+\]
+Then there are no nontrivial zeros of \(\zeta(s)\) in
+\[
+0<\Rea(s)<0.01,
+\qquad
+\Ima(s)\geq 10^{30}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+s=\sigma+i\tau
+\]
+with
+\[
+0<\sigma<0.01,
+\qquad
+\tau\geq10^{30}.
+\]
+Suppose, for contradiction, that \(s\) is a nontrivial zero of \(\zeta(s)\).
+
+By the quotient zero condition,
+\[
+\NQ(s)=0.
+\]
+By the endpoint expansion,
+\[
+0
+=
+\NQ(s)
+=
+\frac{\ii}{\tau}\Beff(\sigma,\tau)+\Rtot(s).
+\]
+Therefore
+\[
+\Rtot(s)
+=
+-\frac{\ii}{\tau}\Beff(\sigma,\tau).
+\]
+Taking absolute values gives
+\[
+|\Rtot(s)|
+=
+\frac{|\Beff(\sigma,\tau)|}{\tau}.
+\]
+By the endpoint bracket lower bound,
+\[
+|\Beff(\sigma,\tau)|\geq \dend.
+\]
+Thus
+\[
+|\Rtot(s)|\geq \frac{\dend}{\tau}.
+\]
+
+On the other hand, the endpoint certificate gives
+\[
+|\Rtot(s)|
+\leq
+\Cend\frac{\log\tau}{\tau^{3/2}}.
+\]
+Combining the lower and upper bounds, a zero would imply
+\[
+\frac{\dend}{\tau}
+\leq
+\Cend\frac{\log\tau}{\tau^{3/2}}.
+\]
+Equivalently,
+\[
+\sqrt{\tau}
+\leq
+\frac{\Cend}{\dend}\log\tau.
+\]
+
+
+But the final endpoint certificate records that the strict opposite inequality holds at
+\[
+\tau=10^{30}.
+\]
+For larger \(\tau\), the function
+\[
+\frac{\sqrt{\tau}}{\log\tau}
+\]
+is increasing. Hence the strict inequality
+\[
+\sqrt{\tau}>
+\frac{\Cend}{\dend}\log\tau
+\]
+holds for all
+\[
+\tau\geq 10^{30}.
+\]
+This contradiction proves that no such zero exists.
+\end{proof}
+
+\begin{remark}
+The proof uses no numerical sampling of the zeta function. The only numerical work is the finite certification of the residual constant and the final height inequality. The zero exclusion itself follows from the quotient identity and the bracket-residual contradiction.
+\end{remark}
+
+\subsection{Monotonicity of the height comparison}
+
+For completeness, we spell out the monotonicity used above. Define
+\[
+F(\tau)=\frac{\sqrt{\tau}}{\log\tau}.
+\]
+Then
+\[
+F'(\tau)
+=
+\frac{1}{\sqrt{\tau}(\log\tau)^2}
+\left(
+\frac12\log\tau-1
+\right).
+\]
+Thus
+\[
+F'(\tau)>0
+\]
+whenever
+\[
+\log\tau>2,
+\]
+or equivalently
+\[
+\tau>e^2.
+\]
+Since
+\[
+10^{30}>e^2,
+\]
+the height comparison only needs to be checked at the left endpoint
+\[
+\tau=10^{30}.
+\]
+The certificate does exactly this.
+
+\section{Reflection to the right endpoint}
+
+The endpoint certificate was constructed on the left endpoint strip
+\[
+0<\sigma<0.01.
+\]
+The right endpoint strip is
+\[
+0.99<\sigma<1.
+\]
+It is not necessary to build an independent right endpoint certificate if one uses the standard symmetries of the nontrivial zeros of the zeta function.
+
+The functional equation implies that if
+\[
+\rho=\beta+i\gamma
+\]
+is a nontrivial zero, then
+\[
+1-\rho
+\]
+is also a nontrivial zero after the standard symmetric normalization. Combining this with conjugation symmetry, the set of nontrivial zeros is symmetric about both the real axis and the critical line
+\[
+\Rea(s)=\frac12.
+\]
+Thus a zero with real part
+\[
+0.99<\beta<1
+\]
+would imply a corresponding zero with real part
+\[
+0<1-\beta<0.01.
+\]
+The left endpoint theorem excludes such a zero at the same absolute height.
+
+\begin{theorem}[Endpoint pair theorem]
+Assume the endpoint-left certificate theorem. Then there are no nontrivial zeros of \(\zeta(s)\) in either endpoint neighborhood
+\[
+0<\Rea(s)<0.01
+\]
+or
+\[
+0.99<\Rea(s)<1
+\]
+for
+\[
+|\Ima(s)|\geq10^{30}.
+\]
+\end{theorem}
+
+\begin{proof}
+The left endpoint at positive height is the endpoint-left certificate theorem.
+
+If
+\[
+0<\Rea(s)<0.01
+\]
+and
+\[
+\Ima(s)\leq -10^{30},
+\]
+then the conjugate
+\[
+\overline{s}
+\]
+has positive imaginary part at least \(10^{30}\) and the same real part. Since the zeta function has real Dirichlet coefficients and satisfies conjugation symmetry, zeros occur in conjugate pairs. Therefore the positive-height left endpoint exclusion implies the negative-height left endpoint exclusion.
+
+Now suppose there is a nontrivial zero \(\rho=\beta+i\gamma\) with
+\[
+0.99<\beta<1
+\]
+and
+\[
+|\gamma|\geq10^{30}.
+\]
+By reflection symmetry about the critical line, there is a corresponding nontrivial zero with real part
+\[
+1-\beta\in(0,0.01)
+\]
+and the same absolute height. This contradicts the left endpoint exclusion already proved. Hence the right endpoint contains no such zero.
+\end{proof}
+
+\begin{remark}
+The endpoint repository computes only the left endpoint constant. This is sufficient because the right endpoint is not treated by a separate residual calculation; it is obtained by symmetry. If one wanted a completely independent right endpoint certificate, one would need a separate right endpoint normalization and residual certificate. That is unnecessary for the theorem stated here.
+\end{remark}
+
+\section{Assembly with the outer and inner certified strips}
+
+We now assemble the endpoint theorem with the previously certified regions.
+
+The earlier certified outer and inner certificates exclude off-critical
+nontrivial zeros in
+\[
+0.01\leq \Rea(s)\leq 0.99,
+\qquad
+\Rea(s)\neq \frac12,
+\qquad
+|\Ima(s)|\geq 10^{30}.
+\]
+
+The outer certificate covers \(0.01\le\sigma\le0.49\) and, by reflection,
+\(0.51\le\sigma\le0.99\) at height \(10^{30}\).  The inner two-channel
+certificate covers \(0<|\sigma-\tfrac12|\le0.01\) at height at least
+\(10^{29}\), and therefore also at \(10^{30}\).
+
+That band is obtained by combining three pieces.
+
+First, the left outer strip certificate excludes zeros in
+\[
+0.01\leq \sigma\leq0.49,
+\qquad
+|\tau|\geq10^{30}.
+\]
+Second, reflection gives the right outer strip
+\[
+0.51\leq \sigma\leq0.99,
+\qquad
+|\tau|\geq10^{30}.
+\]
+Third, the inner two-channel certificate excludes off-critical zeros in
+\[
+0<\left|\sigma-\frac12\right|\leq0.01
+\]
+at the required high heights. Together these cover
+\[
+0.01\leq \sigma\leq0.99,
+\qquad
+\sigma\neq\frac12.
+\]
+
+The endpoint pair theorem covers the two remaining regions:
+\[
+0<\sigma<0.01
+\]
+and
+\[
+0.99<\sigma<1.
+\]
+Therefore every real part in the open critical strip is covered, except the critical line itself.
+
+\begin{theorem}[High-height off-critical exclusion]
+Assume the structural quotient-obstruction theorem and assume that the outer, inner, and endpoint certificates have been independently reproduced with their required final statuses. Then there are no nontrivial zeros of \(\zeta(s)\) with
+\[
+0<\Rea(s)<1,
+\qquad
+\Rea(s)\neq\frac12,
+\qquad
+|\Ima(s)|\geq10^{30}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let \(\rho=\beta+i\gamma\) be a nontrivial zero with
+\[
+0<\beta<1,
+\qquad
+|\gamma|\geq10^{30}.
+\]
+If
+\[
+0<\beta<0.01,
+\]
+then \(\rho\) lies in the endpoint-left strip, which is excluded by the endpoint pair theorem.
+
+If
+\[
+0.99<\beta<1,
+\]
+then \(\rho\) lies in the endpoint-right strip, also excluded by the endpoint pair theorem.
+
+It remains to consider
+\[
+0.01\leq\beta\leq0.99.
+\]
+If
+\[
+\beta\neq\frac12,
+\]
+then \(\rho\) lies in the previously certified outer or inner band. That region is excluded by the earlier certificates.
+
+Thus no off-critical nontrivial zero exists at height
+\[
+|\gamma|\geq10^{30}.
+\]
+\end{proof}
+
+The final high-height RH statement follows immediately.
+
+\begin{corollary}[Critical-line confinement above \(10^{30}\)]
+Assume the structural quotient-obstruction theorem and all referenced certificates are independently reproduced with the required final statuses. Then every nontrivial zero \(\rho\) of \(\zeta(s)\) with
+\[
+|\Ima(\rho)|\geq10^{30}
+\]
+satisfies
+\[
+\Rea(\rho)=\frac12.
+\]
+\end{corollary}
+
+\begin{proof}
+The nontrivial zeros lie in the critical strip
+\[
+0<\Rea(s)<1.
+\]
+The high-height off-critical exclusion theorem rules out every real part in this strip except
+\[
+\Rea(s)=\frac12.
+\]
+Therefore any nontrivial zero with
+\[
+|\Ima(s)|\geq10^{30}
+\]
+must lie on the critical line.
+\end{proof}
+
+\begin{remark}
+This corollary is the precise sense in which the present work contributes to RH. It proves, conditionally on the structural theorem and certificates, the Riemann Hypothesis above height \(10^{30}\). It does not by itself prove RH below that height. The finite range remains a separate verification problem.
+\end{remark}
+
+\section{Numerical certificate summary}
+
+For reference, we record the final endpoint certificate data.
+
+\[
+\begin{array}{ll}
+\text{certificate file} &
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\\[2mm]
+\text{status} &
+\texttt{endpoint\_left\_full\_certificate}
+\\[2mm]
+\text{normalization} &
+\texttt{N\_Q}
+\\[2mm]
+\sigma_{\min} & 0
+\\
+\sigma_{\max} & 0.01
+\\
+\tau_{\min} & 10
+\\[2mm]
+\Cend &
+9.26\times10^{10}
+\\[2mm]
+\dend &
+0.20405207717382234
+\\[2mm]
+T &
+10^{30}
+\\[2mm]
+\sqrt{T} &
+10^{15}
+\\[2mm]
+(\Cend/\dend)\log T &
+3.14\times10^{13}
+\\[2mm]
+\text{height condition} &
+\texttt{True}
+\\[2mm]
+\text{proof hash} &
+\texttt{49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20}
+\end{array}
+\]
+
+The final residual constant is dominated by
+\[
+C_{\mathrm{far}},
+\qquad
+C_{\mathrm{bd}},
+\qquad
+C_{\mathrm{nonstat}}.
+\]
+This observation is important for later height reduction.
+
+\section{Why the endpoint certificate is finite}
+
+The finite nature of the endpoint certificate comes from the same discipline used in the outer and inner certifiers. Infinite oscillatory expressions are not sampled. They are decomposed into structured pieces, and each piece is either bounded analytically or reduced to finitely many interval boxes.
+
+The endpoint boundary sector illustrates the principle. The exact boundary contribution is split using a compact cutoff:
+\[
+1=\chi_Y(y)+(1-\chi_Y(y)).
+\]
+The compact part is certified on a finite range
+\[
+0\leq y\leq2Y,
+\qquad
+Y=128.
+\]
+The complement
+\[
+1-\chi_Y
+\]
+is not thrown away. It is assigned to three explicit hooks:
+\[
+C_{\chi^c,\mathrm{tail}},
+\qquad
+C_{\chi^c,\mathrm{nonstat}},
+\qquad
+C_{\chi^c,\mathrm{stationary}}.
+\]
+Thus every contribution has a place in the ledger.
+
+The compact packet is certified through interval arithmetic. The nonstationary compact complement is certified by phase separation and integration by parts. The stationary-overlap complement is certified by direct interval enclosure. The large tail is certified by derivative envelopes and integration by parts. These pieces are then merged into the boundary sector.
+
+The endpoint certificate is therefore finite because the analytic decomposition leaves no unassigned infinite remainder. All infinite tails are either integrated by parts with explicit envelopes or assigned to finite interval boxes after compactification.
+
+\begin{remark}
+This is the precise mathematical content behind the informal idea of phase cancellation at high height. The proof does not rely on metaphor. It relies on organized oscillatory decomposition, finite interval enclosures, and fail-closed certificate merging.
+\end{remark}
+
+
+
+
+\section{Reproducibility and audit protocol}
+
+A finite certificate can only be part of a proof if its reproduction rules are as explicit as the mathematical theorem it supports.  The endpoint repository is therefore treated not as a collection of auxiliary scripts, but as a proof object with a fixed input-output contract.
+
+The repository associated with this endpoint certificate is
+
+\[
+\texttt{RH-endpoint-strip-certifier}.
+\]
+
+Its purpose is to regenerate the endpoint-left certificate
+
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\]
+
+from the scripts and finite interval arithmetic routines in the repository.
+
+The reproduction command is
+
+\[
+\texttt{./run\_endpoint\_certificate.sh}.
+\]
+
+A successful run must end with
+
+\[
+\texttt{status = endpoint\_left\_full\_certificate}
+\]
+
+and
+
+\[
+\texttt{height\_condition\_holds = True}.
+\]
+
+The decisive final fields are
+
+\[
+\begin{array}{ll}
+\text{field} & \text{expected value} \\ \hline
+\texttt{status} & \texttt{endpoint\_left\_full\_certificate} \\
+\texttt{sigma\_min} & \texttt{0} \\
+\texttt{sigma\_max} & \texttt{0.01} \\
+\texttt{tau\_min} & \texttt{10} \\
+\texttt{normalization} & \texttt{N\_Q} \\
+\texttt{height\_tested} & \texttt{1E+30} \\
+\texttt{height\_condition\_holds} & \texttt{True}
+\end{array}
+\]
+
+The certificate is not accepted if any one of the seven sector files is absent, if any sector file lacks status
+
+\[
+\texttt{proved},
+\]
+
+or if the final height inequality fails.
+
+\subsection{The certificate files}
+
+The final endpoint certificate depends on seven safe sector files:
+
+\[
+\begin{array}{ll}
+\mathrm{band} &
+\texttt{certs\_endpoint/band\_sector.safe.json}
+\\
+\mathrm{bd} &
+\texttt{certs\_endpoint/bd\_sector.safe.json}
+\\
+\mathrm{far} &
+\texttt{certs\_endpoint/far\_sector.safe.json}
+\\
+\mathrm{end} &
+\texttt{certs\_endpoint/end\_sector.safe.json}
+\\
+\mathrm{nonstat} &
+\texttt{certs\_endpoint/nonstat\_sector.safe.json}
+\\
+\mathrm{floor} &
+\texttt{certs\_endpoint/floor\_sector.safe.json}
+\\
+\mathrm{core} &
+\texttt{certs\_endpoint/core\_sector.safe.json}.
+\end{array}
+\]
+
+The boundary sector is itself a merge of compact boundary fragments and compact-complement hooks.  Its final sector file is
+
+\[
+\texttt{certs\_endpoint/bd\_sector.safe.json}.
+\]
+
+The compact-complement hooks used in the reference certificate are:
+
+\[
+\texttt{certs\_endpoint/cert\_chic\_tail.raw.json},
+\]
+
+\[
+\texttt{certs\_endpoint/cert\_chic\_nonstationary.raw.json},
+\]
+
+and
+
+\[
+\texttt{certs\_endpoint/cert\_chic\_stationary.raw.json}.
+\]
+
+The derivative envelope used by the compact-complement tail certificate is
+
+\[
+\texttt{certs\_endpoint/proved\_tail\_derivative\_envelope.raw.json}.
+\]
+
+Each file must be valid JSON.  Each proof-producing file must declare its own status, constants, coverage metadata, and proof hash.
+
+\subsection{Independent reproduction}
+
+The intended independent reproduction procedure is:
+
+\[
+\begin{array}{l}
+\texttt{python -m venv .venv},\\
+\texttt{source .venv/bin/activate},\\
+\texttt{python -m pip install --upgrade pip},\\
+\texttt{python -m pip install -r requirements.txt},\\
+\texttt{./run\_endpoint\_certificate.sh}.
+\end{array}
+\]
+
+The reproduction script regenerates all endpoint certificates and then checks the final JSON.  The final output must include the line
+
+\[
+\texttt{Endpoint certificate verified:}
+\]
+
+followed by the final proof hash.
+
+For the reference endpoint certificate, the proof hash is
+
+\[
+\texttt{49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20}.
+\]
+
+A release archive records hashes in
+
+\[
+\texttt{SHA256SUMS.txt}.
+\]
+
+A verifier may check the archive by running
+
+\[
+\texttt{sha256sum -c SHA256SUMS.txt}.
+\]
+
+\begin{remark}
+Hash stability is not a substitute for correctness.  It only guarantees that the files being audited are the same files as the files in the release.  The mathematical validity still comes from the proof of the structural reduction, the correctness of the interval routines, and the fail-closed certificate logic.
+\end{remark}
+
+\section{Audit requirements for the endpoint certificate}
+
+The endpoint certificate introduces a new endpoint boundary merger and an explicit endpoint coverage stamping step.  These are convenient for reproducibility, but both must be audited before the result is treated as publication-ready.
+
+\subsection{Coverage audit}
+
+Every sector in the final merge must explicitly cover
+
+\[
+0\leq \sigma\leq0.01.
+\]
+
+The final certificate records
+
+\[
+\texttt{coverage\_check = explicit\_fields\_ok}
+\]
+
+for each sector.  This means that the final merge did not merely trust a file name or a directory path; it checked explicit coverage fields.
+
+The endpoint coverage fields are
+
+\[
+\texttt{sigma\_min = 0},
+\qquad
+\texttt{sigma\_max = 0.01}.
+\]
+
+The coverage stamping script does not prove a numerical estimate.  It records the declared endpoint run domain in files that were produced with the endpoint parameters.  For a final archival release, it is preferable that each sector script emit these fields directly.  The stamping step is acceptable as metadata repair only if the run commands are recorded and the coverage hash trail is preserved.
+
+\subsection{Boundary merger audit}
+
+The most important computational audit point is the boundary sector.  The endpoint boundary sector is produced by the merger
+
+\[
+\texttt{merge\_endpoint\_boundary\_sector.py}.
+\]
+
+The merger combines:
+
+\[
+A_{\mathrm{grouped}},
+\]
+
+\[
+A_{\mathrm{tail}},
+\]
+
+\[
+C_{\chi^c,\mathrm{tail}},
+\]
+
+\[
+C_{\chi^c,\mathrm{nonstat}},
+\]
+
+and
+
+\[
+C_{\chi^c,\mathrm{stationary}}.
+\]
+
+The audit must confirm:
+
+\begin{enumerate}[label=\arabic*.]
+\item Every compact finite-\(\tau\) fragment is included in the grouped compact ledger.
+\item The high-\(\tau\) Taylor compact boundary fragment is included.
+\item Every compact high-tail fragment is either converted by the documented tail conversion factor or superseded by the Taylor tail bound.
+\item The compact-complement tail hook is included.
+\item The compact-complement nonstationary hook is included.
+\item The compact-complement stationary hook is included.
+\item No complement term is silently discarded.
+\item No fragment is counted twice in a way that would invalidate the stated bound.
+\end{enumerate}
+
+The reference boundary sector constant is
+
+\[
+C_{\mathrm{bd}}
+=
+22441347956.41655256005262876080624795046377492408424944469607921603283476338262713986717485812881457.
+\]
+
+This value is large, but it is below the margin needed for the endpoint height comparison.  The correctness question is therefore not whether the boundary constant is small, but whether it is complete and auditable.
+
+\subsection{No dummy constants}
+
+A constant is admissible only if it is supplied by one of the following:
+
+\begin{enumerate}[label=\arabic*.]
+\item A theorem stated and proved in the paper.
+\item A derivation written explicitly in the paper.
+\item A finite interval certificate.
+\item A JSON artifact with status \(\texttt{proved}\) or final accepted status.
+\item A reproducible command in the repository.
+\end{enumerate}
+
+This rule is essential.  A large conservative constant is acceptable if it is traceable.  A small unexplained constant is not.
+
+\section{The endpoint theorem in proof form}
+
+We now state the endpoint theorem in the final form intended for citation.
+
+\begin{theorem}[Certified endpoint-left zero exclusion]
+Assume the structural quotient obstruction theorem supplies the identity
+\[
+\NQ(s)=0
+\]
+at nontrivial zeros and the endpoint expansion
+\[
+\NQ(s)=\frac{\ii}{\tau}\Beff(\sigma,\tau)+\Rtot(s)
+\]
+for
+\[
+0\leq\sigma\leq0.01,
+\qquad
+\tau\geq10.
+\]
+Assume the endpoint certificate repository reproduces
+
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\]
+
+with
+
+\[
+\texttt{status = endpoint\_left\_full\_certificate}
+\]
+
+and
+
+\[
+\texttt{height\_condition\_holds = True}.
+\]
+
+Then there are no nontrivial zeros of \(\zeta(s)\) in
+
+\[
+0<\Rea(s)<0.01,
+\qquad
+\Ima(s)\geq10^{30}.
+\]
+\end{theorem}
+
+\begin{proof}
+Suppose
+
+\[
+s=\sigma+i\tau,
+\qquad
+0<\sigma<0.01,
+\qquad
+\tau\geq10^{30},
+\]
+
+is a nontrivial zero.  Then
+
+\[
+\NQ(s)=0.
+\]
+
+Using the endpoint expansion gives
+
+\[
+0=\frac{\ii}{\tau}\Beff(\sigma,\tau)+\Rtot(s).
+\]
+
+Hence
+
+\[
+|\Rtot(s)|
+=
+\frac{|\Beff(\sigma,\tau)|}{\tau}.
+\]
+
+By the endpoint bracket lemma,
+
+\[
+|\Beff(\sigma,\tau)|\geq\dend.
+\]
+
+Therefore
+
+\[
+|\Rtot(s)|\geq\frac{\dend}{\tau}.
+\]
+
+By the endpoint residual certificate,
+
+\[
+|\Rtot(s)|
+\leq
+\Cend\frac{\log\tau}{\tau^{3/2}}.
+\]
+
+Thus a zero would imply
+
+\[
+\frac{\dend}{\tau}
+\leq
+\Cend\frac{\log\tau}{\tau^{3/2}}.
+\]
+
+Equivalently, in the certificate normalization,
+
+\[
+\sqrt{\tau}
+\leq
+\frac{\Cend}{\dend}\log\tau.
+\]
+
+But the final endpoint certificate verifies the strict inequality
+
+\[
+\sqrt{10^{30}}
+>
+\frac{\Cend}{\dend}\log(10^{30}).
+\]
+
+Since the function
+
+\[
+\frac{\sqrt{\tau}}{\log\tau}
+\]
+
+is increasing for \(\tau>e^2\), the same strict inequality holds for all
+
+\[
+\tau\geq10^{30}.
+\]
+
+Contradiction.  Therefore no such zero exists.
+\end{proof}
+
+\section{The final high-height conclusion}
+
+We now combine the endpoint theorem with the already certified band
+
+\[
+0.01\leq\Rea(s)\leq0.99,
+\qquad
+\Rea(s)\neq\frac12,
+\qquad
+|\Ima(s)|\geq10^{30}.
+\]
+
+The endpoint theorem covers
+
+\[
+0<\Rea(s)<0.01.
+\]
+
+Reflection covers
+
+\[
+0.99<\Rea(s)<1.
+\]
+
+Therefore the entire open critical strip is covered away from the critical line.
+
+\begin{corollary}[Final assembled high-height confinement]
+Assume the structural quotient obstruction theorem and assume that the outer, inner, and endpoint certificates are independently reproduced with their required final statuses.  Then every nontrivial zero \(\rho\) of \(\zeta(s)\) with
+
+\[
+|\Ima(\rho)|\geq10^{30}
+\]
+
+satisfies
+
+\[
+\Rea(\rho)=\frac12.
+\]
+\end{corollary}
+
+\begin{proof}
+Let
+
+\[
+\rho=\beta+i\gamma
+\]
+
+be a nontrivial zero with
+
+\[
+|\gamma|\geq10^{30}.
+\]
+
+All nontrivial zeros lie in the critical strip
+
+\[
+0<\beta<1.
+\]
+
+If
+
+\[
+0<\beta<0.01,
+\]
+
+the endpoint-left theorem excludes \(\rho\).
+
+If
+
+\[
+0.99<\beta<1,
+\]
+
+reflection gives a zero with real part
+
+\[
+1-\beta\in(0,0.01),
+\]
+
+again excluded by the endpoint-left theorem.
+
+If
+
+\[
+0.01\leq\beta\leq0.99
+\]
+
+and
+
+\[
+\beta\neq\frac12,
+\]
+
+then \(\rho\) lies in the previously certified off-critical band.  That band is excluded by the outer and inner certificates.
+
+The only remaining possibility is
+
+\[
+\beta=\frac12.
+\]
+
+Thus every nontrivial zero at height at least \(10^{30}\) lies on the critical line.
+\end{proof}
+
+\begin{remark}
+This theorem is the high-height critical-line confinement statement delivered
+by the certificate system.  It is the RH conclusion restricted to heights
+\(|\Im s|\ge10^{30}\), conditional on the structural theorem and the reproduced
+certificates.  It does not assert that the finite range below \(10^{30}\) has been settled by this paper.  That finite range is a separate computational verification problem.
+\end{remark}
+
+
+
+
+
+
+
+\appendix
+
+\section{Refining the constant \(C\) and lowering the analytic height}
+
+The endpoint certificate proves the endpoint theorem at height
+\[
+10^{30}.
+\]
+It also gives a quantitative view of what would be required to lower that height.  The governing inequality has the form
+\[
+\sqrt{T}>
+\frac{C}{d}\log T,
+\]
+where \(C\) is the relevant certified residual constant and \(d\) is the corresponding bracket gap.
+
+For the endpoint-left certificate,
+\[
+C=\Cend
+=
+9.26\times10^{10}
+\]
+and
+\[
+d=\dend=0.20405207717382234.
+\]
+The endpoint inequality at \(T=10^{30}\) is therefore
+\[
+10^{15}
+>
+3.14\times10^{13}.
+\]
+The margin is large, but the inequality is still far from the computationally verified range around \(10^{12}\) or \(10^{13}\).
+
+To see why, suppose one wants the same endpoint mechanism to work at
+\[
+T=10^{13}.
+\]
+Then the allowable endpoint residual constant would have to satisfy approximately
+\[
+C_{\max}(10^{13})
+=
+\dend\frac{\sqrt{10^{13}}}{\log(10^{13})}.
+\]
+This is on the order of \(10^4\), while the present endpoint constant is on the order of
+\[
+10^{11}.
+\]
+Thus reaching \(10^{13}\) by the present endpoint inequality would require a reduction by several million-fold.
+
+The endpoint certificate is therefore successful for high height, but it is not yet optimized for low height.  The next stage is not to ask whether the endpoint theorem is true; the certificate has already passed.  The next stage is to ask how much of the residual constant is structural, and how much is conservative padding.
+
+\subsection{Dominant endpoint sectors}
+
+The final endpoint constant is the sum of seven certified sector constants:
+\[
+\Cend
+=
+C_{\mathrm{band}}
++
+C_{\mathrm{bd}}
++
+C_{\mathrm{far}}
++
+C_{\mathrm{end}}
++
+C_{\mathrm{nonstat}}
++
+C_{\mathrm{floor}}
++
+C_{\mathrm{core}}.
+\]
+The successful endpoint run gives the following approximate hierarchy:
+\[
+C_{\mathrm{far}}\approx 5.0\cdot 10^{10},
+\]
+\[
+C_{\mathrm{bd}}\approx 2.244\cdot 10^{10},
+\]
+\[
+C_{\mathrm{nonstat}}\approx 2.0\cdot 10^{10},
+\]
+while the remaining sectors are much smaller:
+\[
+C_{\mathrm{end}}\approx 7.1\cdot 10^7,
+\]
+\[
+C_{\mathrm{band}}\approx 5.1\cdot 10^6,
+\]
+\[
+C_{\mathrm{core}}\approx 10^2,
+\qquad
+C_{\mathrm{floor}}=0.
+\]
+Therefore, any serious endpoint-height reduction must begin with
+\[
+\mathrm{far},
+\qquad
+\mathrm{bd},
+\qquad
+\mathrm{nonstat}.
+\]
+
+\subsection{Far sector}
+
+The far sector is currently the largest endpoint contribution:
+\[
+C_{\mathrm{far}}
+=
+50000000100.050000000000.
+\]
+This sector is produced by a conservative stationary post-packet envelope.  Its size suggests that the current certificate is not exploiting all available cancellation or all available local phase geometry.
+
+A refinement program for the far sector should proceed in three stages.
+
+First, identify the exact imported analytic cap used by the far-sector script.  If the far bound is a broad envelope, then replace it with a phase-box interval certificate.
+
+Second, separate truly stationary boxes from nonstationary tail boxes.  A single large stationary remainder constant may be hiding many regions where integration by parts is available.
+
+Third, certify the post-stationary remainder using interval arithmetic on the actual endpoint interval
+\[
+0\leq\sigma\leq0.01,
+\]
+rather than using a global cap inherited from a wider strip.
+
+The expected outcome is a substantial reduction in \(C_{\mathrm{far}}\), but it is not credible to assign a new value until a rerun produces a new JSON file with status
+\[
+\texttt{proved}.
+\]
+
+\subsection{Boundary sector}
+
+The boundary sector is the second largest endpoint contribution:
+\[
+C_{\mathrm{bd}}
+=
+22441347956.41655256005262876080624795046377492408424944469607921603283476338262713986717485812881457.
+\]
+The boundary sector is assembled from compact boundary fragments and compact-complement hooks.  In the reference endpoint certificate, the largest boundary contribution is the compact high-tail term.  The compact-complement hooks are comparatively small:
+\[
+C_{\chi^c,\mathrm{tail}}\approx 3.79\cdot 10^5,
+\]
+\[
+C_{\chi^c,\mathrm{nonstat}}\approx 2.66\cdot 10^4,
+\]
+\[
+C_{\chi^c,\mathrm{stationary}}\approx 94.
+\]
+Thus the main boundary refinement target is the compact high-tail conversion, not the compact-complement hooks.
+
+The boundary sector is also the most important audit target, because it is assembled from many finite fragments.  Any refinement must preserve the identity
+\[
+1=\chi_Y+(1-\chi_Y),
+\]
+and must prove that no compact-complement term is omitted.  In particular, reducing \(C_{\mathrm{bd}}\) must not be achieved by silently discarding
+\[
+1-\chi_Y.
+\]
+
+A plausible boundary refinement program is:
+
+\begin{enumerate}[label=\arabic*.]
+\item Increase the resolution of the compact high-tail boxes and measure whether the current maximum is an interval overestimate.
+\item Replace the maximum-over-fragments merge by a sharper dyadic ledger if the fragments are disjoint in height or \(w\).
+\item Certify grouped oscillatory sums before taking absolute values wherever the current proof uses absolute bounds too early.
+\item Re-evaluate the high-tail conversion factor in exact interval arithmetic and record the conversion as a separate certificate artifact.
+\item Preserve the compact-complement hooks as independent proof objects.
+\end{enumerate}
+
+\subsection{Nonstationary sector}
+
+The global nonstationary sector has current safe constant
+\[
+C_{\mathrm{nonstat}}
+=
+20000000100.020000000000.
+\]
+This sector is deliberately conservative.  Its proof principle is integration by parts under phase separation.  Such bounds are often sensitive to how the phase space is partitioned.
+
+A refinement should first examine whether the phase-separation threshold is too coarse.  If the current threshold forces too many boxes into a broad nonstationary envelope, then a finer partition may reduce the bound.  Conversely, boxes near stationary transition should be exported to a stationary-overlap certificate rather than overcharged in the nonstationary sector.
+
+A refined nonstationary proof should record:
+
+\begin{enumerate}[label=\arabic*.]
+\item The phase derivative lower bound on each box.
+\item The amplitude envelope on each box.
+\item The integration-by-parts order used.
+\item The exact conversion from local box bounds to the global residual constant.
+\item The list of boxes excluded from the nonstationary estimate and assigned elsewhere.
+\end{enumerate}
+
+This is the same discipline already used in the compact-complement transition hook.  The global nonstationary certificate should be brought to the same level of granularity.
+
+\subsection{Endpoint sector, band sector, core sector, and floor sector}
+
+The endpoint, band, core, and floor sectors are not the current bottleneck.
+
+The endpoint sector contributes approximately
+\[
+7.1\cdot 10^7,
+\]
+which is small relative to the far, boundary, and nonstationary sectors.  It may still be worth refining later, especially if the three dominant sectors are reduced by several orders of magnitude.
+
+The band sector contributes approximately
+\[
+5.1\cdot 10^6.
+\]
+Again, this is not a first-order bottleneck.
+
+The core sector is negligible at approximately
+\[
+10^2.
+\]
+The floor sector is exactly zero.
+
+Thus the first refinement pass should not spend effort on the core or floor sector.  The endpoint and band sectors become important only after the dominant three sectors have been substantially reduced.
+
+\section{Global height reduction beyond the endpoint}
+
+The endpoint certificate is only one part of the global high-height theorem.  Lowering the final global threshold requires lowering the constants in all certified regions.
+
+The earlier outer certificate uses a one-channel inequality of the form
+\[
+\sqrt{T}>
+\frac{C_{\mathrm{outer}}}{d_{\mathrm{outer}}}\log T,
+\]
+where the certified outer bracket gap on
+\[
+0.01\leq\sigma\leq0.49
+\]
+is much smaller than the endpoint bracket gap.  The endpoint bracket gap is about
+\[
+0.204,
+\]
+whereas the outer-strip gap is about
+\[
+0.0041.
+\]
+Thus the outer strip near
+\[
+\sigma=0.49
+\]
+is intrinsically more delicate.
+
+The inner certificate uses the two-channel inequality
+\[
+\sqrt{T}>
+\frac{C_{\mathrm{inner}}}{g_0}\log T,
+\]
+where
+\[
+g_0=0.2.
+\]
+The current inner constant is on the order of
+\[
+10^{11}.
+\]
+Therefore, even if the endpoint constant were improved dramatically, the global threshold would not fall to \(10^{12}\) or \(10^{13}\) unless the outer and inner constants are also reduced.
+
+A realistic global height-reduction program has three layers.
+
+\subsection{Layer one: remove audit padding}
+
+The first layer is to remove unnecessary safety padding while preserving reproducibility.  This can reduce constants modestly, but not by the many orders of magnitude needed to reach \(10^{13}\).
+
+This layer includes:
+
+\begin{enumerate}[label=\arabic*.]
+\item Replacing decimal padding by exact rational or interval output where possible.
+\item Recording stable hashes for raw interval outputs.
+\item Avoiding repeated application of safe normalization to already-safe constants.
+\item Separating true analytic margins from convenience padding.
+\end{enumerate}
+
+\subsection{Layer two: sharpen sector certificates}
+
+The second layer is to replace broad analytic caps by actual interval certificates.  This is most relevant for far and nonstationary sectors.
+
+The goal is not to guess smaller constants.  The goal is to produce new JSON artifacts with status
+\[
+\texttt{proved}.
+\]
+Each new constant must be traceable to a script, a theorem, or a certificate.
+
+\subsection{Layer three: exploit cancellation before summation}
+
+The current final merge sums sector constants absolutely.  This is safe, but it discards possible cancellation between sectors.  A more powerful future proof might use a vector or matrix-valued residual certificate, preserving phase information across sectors before applying a norm.
+
+This is a qualitatively different improvement.  It would require a new theorem and a new certificate schema.  It should not be introduced casually into the present endpoint paper.  The present endpoint paper proves the endpoint theorem with a conservative scalar sector sum.  Any cross-sector cancellation belongs to a later refinement paper.
+
+\section{Finite-height verification and the road to a complete RH proof}
+
+The high-height theorem above \(10^{30}\) reduces the remaining global problem to a finite-height verification:
+\[
+0<|\Ima(s)|<10^{30}.
+\]
+This range is far beyond the currently standard direct verification range.  For comparison, Platt and Trudgian verified RH up to height
+\[
+3\cdot 10^{12}
+\]
+using rigorous interval arithmetic methods \cite{platt-trudgian}.  Therefore, a complete RH proof by this route would require either:
+
+\begin{enumerate}[label=\arabic*.]
+\item lowering the analytic threshold close to the existing finite verification range;
+\item extending finite verification vastly beyond the current range;
+\item or combining both improvements.
+\end{enumerate}
+
+The endpoint certificate alone does not solve this finite-height problem.  It contributes the missing endpoint geometry at high height.  The next objective is to reduce the global analytic height threshold by refining the constants in the endpoint, outer, and inner certificates.
+
+The target should be stated honestly.  To bridge directly to the known computational verification scale, the analytic threshold must eventually be brought down near
+\[
+10^{12}
+\]
+or
+\[
+10^{13}.
+\]
+With the present constants, this is not a matter of small cleanup.  It requires major constant refinement or a strengthened obstruction principle.
+
+\section{Conclusion}
+
+The endpoint strip was the last high-height geometric gap left by the outer and inner quotient-obstruction certificates.  The principal obstacle was not the endpoint bracket: the endpoint bracket is uniformly nonzero and has the explicit lower bound
+\[
+\dend=0.20405207717382234.
+\]
+The real task was to certify the endpoint residual uniformly on
+\[
+0\leq\sigma\leq0.01.
+\]
+
+The endpoint theorem requires the endpoint repository to reproduce the finite certificate
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}
+\]
+with
+\[
+\texttt{status = endpoint\_left\_full\_certificate}
+\]
+and
+\[
+\texttt{height\_condition\_holds = True}.
+\]
+The certified endpoint residual constant is bounded by
+\[
+\Cend
+=
+9.26\times10^{10}.
+\]
+The height comparison at
+\[
+10^{30}
+\]
+is
+\[
+10^{15}
+>
+3.14\times10^{13}.
+\]
+
+Therefore, subject to the structural quotient-obstruction theorem and independent reproduction of the certificates, the endpoint neighborhoods contain no nontrivial zeros at height
+\[
+|\Ima(s)|\geq10^{30}.
+\]
+Combined with the certified outer and inner strips, this gives the high-height RH conclusion:
+\[
+|\Ima(\rho)|\geq10^{30}
+\quad
+\Longrightarrow
+\quad
+\Rea(\rho)=\frac12
+\]
+for every nontrivial zero \(\rho\) of \(\zeta(s)\).
+
+The endpoint problem is thus reduced to a finite and reproducible certificate.  The remaining frontier is no longer the endpoint geometry; it is the reduction of the global analytic height threshold and the finite verification below it.
+
+\section*{Repository verification status}
+
+The endpoint theorem is conditional on independent reproduction of the public
+repository
+\[
+\url{https://github.com/vicblab/RH-endpoint-strip-certifier}.
+\]
+The manuscript records the expected final status, constants, height comparison,
+and proof hash.  A reader should treat the endpoint certificate as verified
+only after running the repository and confirming that the regenerated JSON file
+matches the stated final fields.
+
+\section{Exact endpoint certificate constants}
+\label{app:exact-endpoint-constants}
+
+This appendix records the exact decimal constants appearing in the reference
+endpoint JSON certificate.  The main theorem statements use rounded-up public
+caps.
+
+\subsection*{Final endpoint residual constant}
+
+\[
+C_{\mathrm{end,exact}}=
+\]
+\[
+\LongConst{92517448456.63735671709576210785011758253131058311532566421240408489986855178714577717052485812881457}
+\]
+
+\subsection*{Boundary sector}
+
+\[
+C_{\mathrm{bd,exact}}=
+\]
+\[
+\LongConst{22441347956.41655256005262876080624795046377492408424944469607921603283476338262713986717485812881457}
+\]
+
+\subsection*{Core sector}
+
+\[
+C_{\mathrm{core,exact}}=
+\]
+\[
+\LongConst{100.15072805704313334704386963206753565903107621951632486886703378840451863730335}
+\]
+
+\subsection*{Endpoint proof hash}
+
+\[
+\LongConst{49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20}
+\]
+
+\begin{thebibliography}{99}
+
+\bibitem{outer-structural}
+V. Blanco Bataller,
+\emph{Outer Strip Mellin Symmetric Quotient Obstruction for the Riemann Zeta Function},
+project manuscript supplied as \texttt{OuterStrip.pdf}.
+
+\bibitem{outer-cert}
+V. Blanco Bataller,
+\emph{An Analysis of the Riemann Zeta Function and its Zeros via Integral Representations},
+finite Arb and Python-FLINT companion certificate manuscript supplied as
+\texttt{An\_Analysis\_of\_the\_Riemann\_Zeta\_Function\_and\_its\_Zeros\_via\_Integral\_Representations (6).pdf}.
+
+\bibitem{inner-strip}
+V. Blanco Bataller,
+\emph{Inner Strip Reflected Two-Channel Quotient Obstruction},
+project manuscript supplied as \texttt{Inner Strip.pdf}.
+
+\bibitem{endpoint-repo}
+V. Blanco Bataller,
+\emph{RH Endpoint Strip Certifier},
+public verification repository, 2026.
+\mathbf{center}
+\url{https://github.com/vicblab/RH-endpoint-strip-certifier}
+\mathbf{center}
+Final certificate:
+\[
+\texttt{ENDPOINT\_LEFT\_CERTIFICATE\_SAFE.json}.
+\]
+Reference proof hash:
+\[
+\texttt{49a8a997898443ee15de999d3ace640854d8bddec2c20b408e0b2eda0cb3da20}.
+\]
+
+\bibitem{dlmf-zeros}
+NIST Digital Library of Mathematical Functions,
+\emph{Chapter 25, Riemann Zeta Function, Section 25.10, Zeros}.
+Used for standard zero symmetry and critical strip background.
+
+\bibitem{platt-trudgian}
+D. Platt and T. Trudgian,
+\emph{The Riemann hypothesis is true up to \(3\cdot10^{12}\)},
+Bulletin of the London Mathematical Society, 53, 792--797, 2021.
+Also available as arXiv:2004.09765.
+
+\end{thebibliography}
+
+\end{document}
